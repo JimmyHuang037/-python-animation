@@ -1,0 +1,164 @@
+{
+  "checked_at": "2026-09-28T12:02:02.987213+00:00",
+  "repos": [
+    {
+      "full_name": "charmbracelet/vhs",
+      "html_url": "https://github.com/charmbracelet/vhs",
+      "stargazers_count": 21004,
+      "pushed_at": "2026-09-24T09:17:32Z",
+      "archived": false,
+      "description": "Your CLI home video recorder 📼",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      }
+    },
+    {
+      "full_name": "asciinema/asciinema",
+      "html_url": "https://github.com/asciinema/asciinema",
+      "stargazers_count": 17844,
+      "pushed_at": "2026-08-14T09:03:57Z",
+      "archived": false,
+      "description": "Terminal session recorder, streamer and player 📹",
+      "license": {
+        "key": "gpl-3.0",
+        "name": "GNU General Public License v3.0",
+        "spdx_id": "GPL-3.0",
+        "url": "https://api.github.com/licenses/gpl-3.0",
+        "node_id": "MDc6TGljZW5zZTk="
+      }
+    },
+    {
+      "full_name": "microsoft/playwright",
+      "html_url": "https://github.com/microsoft/playwright",
+      "stargazers_count": 96804,
+      "pushed_at": "2026-09-28T10:13:07Z",
+      "archived": false,
+      "description": "Playwright is a framework for Web Testing and Automation. It allows testing Chromium, Firefox and WebKit with a single API. ",
+      "license": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      }
+    },
+    {
+      "full_name": "coder/code-server",
+      "html_url": "https://github.com/coder/code-server",
+      "stargazers_count": 79500,
+      "pushed_at": "2026-09-26T00:28:16Z",
+      "archived": false,
+      "description": "VS Code in the browser",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      }
+    },
+    {
+      "full_name": "asweigart/pyautogui",
+      "html_url": "https://github.com/asweigart/pyautogui",
+      "stargazers_count": 12715,
+      "pushed_at": "2024-08-20T18:34:57Z",
+      "archived": false,
+      "description": "A cross-platform GUI automation Python module for human beings. Used to programmatically control the mouse & keyboard.",
+      "license": {
+        "key": "bsd-3-clause",
+        "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+        "spdx_id": "BSD-3-Clause",
+        "url": "https://api.github.com/licenses/bsd-3-clause",
+        "node_id": "MDc6TGljZW5zZTU="
+      }
+    },
+    {
+      "full_name": "obsproject/obs-studio",
+      "html_url": "https://github.com/obsproject/obs-studio",
+      "stargazers_count": 76726,
+      "pushed_at": "2026-09-26T01:04:19Z",
+      "archived": false,
+      "description": "OBS Studio - Free and open source software for live streaming and screen recording",
+      "license": {
+        "key": "gpl-2.0",
+        "name": "GNU General Public License v2.0",
+        "spdx_id": "GPL-2.0",
+        "url": "https://api.github.com/licenses/gpl-2.0",
+        "node_id": "MDc6TGljZW5zZTg="
+      }
+    },
+    {
+      "full_name": "estruyf/vscode-demo-time",
+      "html_url": "https://github.com/estruyf/vscode-demo-time",
+      "stargazers_count": 247,
+      "pushed_at": "2026-09-03T08:32:32Z",
+      "archived": false,
+      "description": "A Visual Studio Code extension to help you script your demos",
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      }
+    },
+    {
+      "full_name": "HamedFathi/Replay",
+      "html_url": "https://github.com/HamedFathi/Replay",
+      "stargazers_count": 16,
+      "pushed_at": "2025-06-13T19:43:13Z",
+      "archived": false,
+      "description": "A Visual Studio Code extension for auto typing.",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      }
+    },
+    {
+      "full_name": "marcosgomesneto/typing-simulator",
+      "html_url": "https://github.com/marcosgomesneto/typing-simulator",
+      "stargazers_count": 44,
+      "pushed_at": "2024-02-11T17:38:09Z",
+      "archived": false,
+      "description": "VSCode Extension: Simulates typing for use in presentations or live video recordings. Typing from file or clipboard, with auto typing mode or manual typing mode.",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      }
+    },
+    {
+      "full_name": "rany2/edge-tts",
+      "html_url": "https://github.com/rany2/edge-tts",
+      "stargazers_count": 12111,
+      "pushed_at": "2026-03-22T19:58:31Z",
+      "archived": false,
+      "description": "Use Microsoft Edge's online text-to-speech service from Python WITHOUT needing Microsoft Edge or Windows or an API key",
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      }
+    },
+    {
+      "full_name": "AhmadAl-Khatib/Coding-Virtual-Studio",
+      "html_url": "https://github.com/AhmadAl-Khatib/Coding-Virtual-Studio",
+      "stargazers_count": 1,
+      "pushed_at": "2026-04-21T18:45:56Z",
+      "archived": false,
+      "description": null,
+      "license": null
+    }
+  ]
+}

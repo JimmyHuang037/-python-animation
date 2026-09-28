@@ -1,0 +1,54 @@
+[
+  {
+    "repo": "motion-canvas/motion-canvas",
+    "stars": 19189,
+    "license": {
+      "key": "mit",
+      "name": "MIT License",
+      "spdx_id": "MIT",
+      "url": "https://api.github.com/licenses/mit",
+      "node_id": "MDc6TGljZW5zZTEz"
+    },
+    "description": "Visualize Your Ideas With Code",
+    "url": "https://github.com/motion-canvas/motion-canvas"
+  },
+  {
+    "repo": "motion-canvas/examples",
+    "stars": 1164,
+    "license": {
+      "key": "mit",
+      "name": "MIT License",
+      "spdx_id": "MIT",
+      "url": "https://api.github.com/licenses/mit",
+      "node_id": "MDc6TGljZW5zZTEz"
+    },
+    "description": "A set of examples for Motion Canvas",
+    "url": "https://github.com/motion-canvas/examples"
+  },
+  {
+    "repo": "VideoZero/skills",
+    "stars": 68,
+    "license": {
+      "key": "apache-2.0",
+      "name": "Apache License 2.0",
+      "spdx_id": "Apache-2.0",
+      "url": "https://api.github.com/licenses/apache-2.0",
+      "node_id": "MDc6TGljZW5zZTI="
+    },
+    "description": "A collection of skills for agentic video generation for structured visuals based on MotionCanvas.",
+    "url": "https://github.com/VideoZero/skills"
+  },
+  {
+    "repo": "Vincentwei1021/anything2explainer",
+    "stars": 2120,
+    "license": {
+      "key": "other",
+      "name": "Other",
+      "spdx_id": "NOASSERTION",
+      "url": null,
+      "node_id": "MDc6TGljZW5zZTA="
+    },
+    "description": "Topic in, narrated explainer video out. A Claude Code / Codex skill that turns any topic into a black-canvas motion-graphics explainer video with TTS voiceover, subtitles and a chapter progress bar. Chinese or English; every frame drawn in code with Remotion.",
+    "url": "https://github.com/Vincentwei1021/anything2explainer"
+  }
+]

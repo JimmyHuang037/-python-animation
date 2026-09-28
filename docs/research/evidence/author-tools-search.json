@@ -1,0 +1,48 @@
+{
+  "retrieved_at": "2026-09-15T09:03:57.519774+00:00",
+  "provider": "Firecrawl cloud v2",
+  "request": {
+    "query": "\"林粒粒呀\" 动画 制作 软件",
+    "limit": 5
+  },
+  "http_status": 200,
+  "response": {
+    "success": true,
+    "data": {
+      "web": [
+        {
+          "url": "https://www.youtube.com/watch?v=9Hku_7e-JSk",
+          "title": "3小时超快速入门Python | 动画教学【2025新版】【自学 ... - YouTube",
+          "description": "# 3小时超快速入门Python | 动画教学【2025新版】【自学Python教程】【零基础Python】\n### [【最新版】小白速通 Codex 教程合集](https://www.youtube.com/watch?v=scP2ojhucD0)\n林粒粒呀\n\n### [3小时超快速入门C语言 | 动画教学【2025新版】【自学C语言教程】【零基础C语言】](https://www.youtube.com/watch?v=AAAdTmardiM)\n林粒粒呀\n\n### [OpenClaw小龙虾保姆级安装教程！小白10分钟搞定【Windows系统】](https://www.youtube.com/watch?v=A4PLqwDligE)\n林粒粒呀\n\n### [WorkBuddy for Beginners: A Quick-Start Guide](https://www.youtube.com/watch?v=6MUVeNuXTIo&pp=ugUHEgVlbi1VUw%3D%3D)\n林粒粒呀",
+          "position": 1
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=z55xZceZV1s",
+          "title": "[1] 120分钟入门Python | 超超基础课程预告 - YouTube",
+          "description": "... 制作的课程⬇️ 小鹅通店铺： ... Go to channel 林粒粒呀 · 3小时超快速入门C语言| 动画教学【2025新版】 ...",
+          "position": 2
+        },
+        {
+          "url": "https://www.bilibili.com/video/BV1Jgf6YvE8e/",
+          "title": "3小时超快速入门Python | 动画教学【2026新版】【自学Python教程 ...",
+          "description": "# 3小时超快速入门Python | 动画教学【2026新版】【自学Python教程】【零基础Python】【计算机二级Python】【Python期末速成】\n[林粒粒呀](https://space.bilibili.com/523995133/?spm_id_from=333.788.upinfo.detail.click) [发消息](https://message.bilibili.com/?spm_id_from=333.788.upinfo.detail.click#whisper/mid523995133)",
+          "position": 3
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=l_HoqAaMnQs",
+          "title": "生产力大杀器，AI编程工具又双叒进化了！ - YouTube",
+          "description": "哈喽呀！ 我是程序员林粒粒呀，致力于做银河系最好懂的编程教程欢迎了解更多我制作的课程⬇️ 小鹅通 ...",
+          "position": 4
+        },
+        {
+          "url": "https://www.bilibili.com/video/BV1hf4y1u7CH/",
+          "title": "[1] 120分钟入门Python | 超超基础入门课程预告_哔哩哔哩_bilibili",
+          "description": "数6205、投硬币枚数4271、收藏人数9051、转发人数2743, 视频作者林粒粒呀 ... 【动画教学】适合所有零基础小白｜python教程｜python零基础｜python期末 ...",
+          "position": 5
+        }
+      ]
+    },
+    "creditsUsed": 2,
+    "id": "01a0a44f-02f7-7156-a3ca-51ca79e8bb32"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "url": "https://api.bilibili.com/x/v2/reply?type=1&oid=378963954&pn=1&ps=20&sort=2",
+  "scope": "first hot-comment page only; not exhaustive",
+  "code": 0,
+  "page": {
+    "num": 1,
+    "size": 20,
+    "count": 63,
+    "acount": 63
+  },
+  "matches": [
+    {
+      "rpid": 116589330304,
+      "is_author": true,
+      "text": "回复 @果来果 :谢谢资瓷！(￣3￣)"
+    },
+    {
+      "rpid": 95685644304,
+      "is_author": false,
+      "text": "感觉ppt很棒"
+    },
+    {
+      "rpid": 244697728928,
+      "is_author": true,
+      "text": "如果你对Python体系化进阶感兴趣——\n欢迎收看我和B站课堂官方合作的 https://b23.tv/mall-ZSd4P-15gnaA8uMF6 \n课程风格仍然是视觉动画效果拉满+知识密集，帮你高效又轻松地掌握知识～"
+    },
+    {
+      "rpid": 244697728928,
+      "is_author": true,
+      "text": "如果你对Python体系化进阶感兴趣——\n欢迎收看我和B站课堂官方合作的 https://b23.tv/mall-ZSd4P-15gnaA8uMF6 \n课程风格仍然是视觉动画效果拉满+知识密集，帮你高效又轻松地掌握知识～"
+    }
+  ]
+}

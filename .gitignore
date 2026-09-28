@@ -1,0 +1,16 @@
+# 本地材料与抓取证据允许纳入版本管理。
+# 单个文件超过 100 MB（100,000,000 字节）不上传 Gitee；提交前检查并逐项添加忽略规则。
+build/
+node_modules/
+.venv/
+.env
+.env.*
+*.log
+**/media/
+
+# 本地 Python 环境与缓存
+.venv-*/
+__pycache__/
+*.py[cod]
+.claude/settings.local.json
+!.env.example

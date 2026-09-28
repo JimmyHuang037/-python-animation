@@ -1,0 +1,120 @@
+{
+  "date": "2026-09-19",
+  "files": [
+    {
+      "source": "/mnt/c/Users/JimmyHuang/Documents/Codex/2026-09-15/files-pasted-by-the-user-python/outputs/README.txt",
+      "local": "references/imported/outline-v1-12h/README.txt",
+      "sha256": "df80cfc70d9785c313705c7a750a7fe934574ad9aa1d3fc0645b63e4b8dedc39",
+      "bytes": 850,
+      "status": "copied-verified",
+      "content_status": "historical-not-current"
+    },
+    {
+      "source": "/mnt/c/Users/JimmyHuang/Documents/Codex/2026-09-15/files-pasted-by-the-user-python/outputs/Python12小时课程小节表.md",
+      "local": "references/imported/outline-v1-12h/Python12小时课程小节表.md",
+      "sha256": "034aec93f04c9bc14b5fa15c206a2d392e91af909bb7716622a1c5ac3b48df95",
+      "bytes": 20075,
+      "status": "copied-verified",
+      "content_status": "historical-not-current"
+    },
+    {
+      "source": "/mnt/c/Users/JimmyHuang/Documents/Codex/2026-09-15/files-pasted-by-the-user-python/outputs/Python12小时课程大纲_v1.docx",
+      "local": "references/imported/outline-v1-12h/Python12小时课程大纲_v1.docx",
+      "sha256": "d35a8a3ba30155397ddac2ab3ff4cbe36913d9dd4d4ddb5528543e6b5df3c2eb",
+      "bytes": 57179,
+      "status": "copied-verified",
+      "content_status": "historical-not-current"
+    },
+    {
+      "source": "/mnt/c/Users/JimmyHuang/Documents/Codex/2026-09-15/files-pasted-by-the-user-python/outputs/列表操作30分钟样片脚本_v1.docx",
+      "local": "references/imported/outline-v1-12h/列表操作30分钟样片脚本_v1.docx",
+      "sha256": "8071dac041ed5000497a80051bbcc1ae9296833d868d61689384d670492ce917",
+      "bytes": 47359,
+      "status": "copied-verified",
+      "content_status": "historical-not-current"
+    },
+    {
+      "source": "/mnt/c/Users/JimmyHuang/Documents/Codex/2026-09-15/files-pasted-by-the-user-python/outputs/sample_examples.py",
+      "local": "references/imported/outline-v1-12h/sample_examples.py",
+      "sha256": "f2d3f205053eab8499a76e29467a8e7129c14a49e9622ca3d8170d028853544f",
+      "bytes": 2008,
+      "status": "copied-verified",
+      "content_status": "historical-not-current"
+    },
+    {
+      "source": "/home/jimmyhuang/.codex-wsl/attachments/8237a5b3-8a7c-4544-9e7b-e6ff2feb8c5f/第10讲习题课练习-ans.pdf",
+      "local": "references/imported/exam-scope/第10讲习题课练习-ans.pdf",
+      "sha256": "b6e9623a244cac237e8e3d00d6a76ed9b944e09810a896b0ada07bc99776088e",
+      "bytes": 927243,
+      "status": "copied-verified",
+      "content_status": "source-material"
+    },
+    {
+      "source": "/home/jimmyhuang/.codex-wsl/attachments/8237a5b3-8a7c-4544-9e7b-e6ff2feb8c5f/第16讲-练习 (1).docx",
+      "local": "references/imported/exam-scope/第16讲-练习 (1).docx",
+      "sha256": "4f7c6eb613bf69ed4d7c0f07be4aa98f1a3a45af665969cb73596bc54800d4bd",
+      "bytes": 109359,
+      "status": "copied-verified",
+      "content_status": "source-material"
+    },
+    {
+      "source": "/mnt/c/Users/JimmyHuang/Downloads/第06讲 列表的函数和方法.pptx",
+      "local": "references/imported/course-materials/第06讲 列表的函数和方法.pptx",
+      "sha256": "5b190844643f78c3318010f51e3b3d300123030b200a0978dad0733e52b16fee",
+      "bytes": 1030740,
+      "status": "copied-verified",
+      "content_status": "source-material"
+    },
+    {
+      "source": "/mnt/c/Users/JimmyHuang/Downloads/第15讲-习题课2练习-ans.pdf",
+      "local": "references/imported/course-materials/第15讲-习题课2练习-ans.pdf",
+      "sha256": "a867b66a1a1cb474ed72d69a078a2788b3a9aa25613bd5815b6d75961354d54d",
+      "bytes": 624017,
+      "status": "copied-verified",
+      "content_status": "source-material"
+    },
+    {
+      "source": "/home/jimmyhuang/.codex-wsl/attachments/b13b1c1e-92c7-47eb-b5be-034a96d0c927/codex-clipboard-41713a0f-106b-4ffe-8cff-52c4bb73fe60.png",
+      "local": "references/imported/visual-reference/codex-clipboard-41713a0f-106b-4ffe-8cff-52c4bb73fe60.png",
+      "sha256": "d3df63d942592e8250308604b247bcbcc5e77735138620386ebd614a60c4fdf5",
+      "bytes": 998816,
+      "status": "copied-verified"
+    },
+    {
+      "source": "/home/jimmyhuang/.codex-wsl/attachments/2da8b3a5-f25a-4df5-b154-dc2e6e2f866d/codex-clipboard-dc1ee3b2-50c0-484c-aa26-5a5e7d99b51a.png",
+      "local": "references/imported/visual-reference/codex-clipboard-dc1ee3b2-50c0-484c-aa26-5a5e7d99b51a.png",
+      "sha256": "1fb6df8f6bd07132942854a2ae7c43e28a0ec127cc5cf5e18747940cc85dde35",
+      "bytes": 1039906,
+      "status": "copied-verified"
+    },
+    {
+      "source": "/home/jimmyhuang/.codex-wsl/attachments/487e17c7-e316-4405-8354-afce2812a574/codex-clipboard-be5fc91a-9e6f-4753-ba44-af97aede9e98.png",
+      "local": "references/imported/visual-reference/codex-clipboard-be5fc91a-9e6f-4753-ba44-af97aede9e98.png",
+      "sha256": "a26a85bf4785777a39952590d2a4e245a5465192e1bf4895fa992038d018debb",
+      "bytes": 934837,
+      "status": "copied-verified"
+    },
+    {
+      "source": "/mnt/c/Users/JIMMYH~1/AppData/Local/Temp/codex-clipboard-d18f0625-fb58-41f2-a5c2-f943e6c16453.png",
+      "local": "references/imported/visual-reference/codex-clipboard-d18f0625-fb58-41f2-a5c2-f943e6c16453.png",
+      "sha256": "c13335ed7e51862f331b8fcbd67805afaee43ae56738cb309ddc490275c0999c",
+      "bytes": 862165,
+      "status": "copied-verified"
+    },
+    {
+      "source": "/mnt/c/Users/JIMMYH~1/AppData/Local/Temp/codex-clipboard-e3e18d19-a759-47b5-a7e6-60764ef52c8c.png",
+      "local": "references/imported/visual-reference/codex-clipboard-e3e18d19-a759-47b5-a7e6-60764ef52c8c.png",
+      "sha256": "d736fea689c2bd73d2e45f8e46968798bf15e6cb39303bf5e2f99a9f240247c5",
+      "bytes": 1196324,
+      "status": "copied-verified"
+    },
+    {
+      "source": "/home/jimmyhuang/.codex-wsl/attachments/82e9580f-3685-4cb1-8994-e65b4d2c8f40/选修课-复习2026-Python.pptx",
+      "local": "references/imported/exam-scope/选修课-复习2026-Python.pptx",
+      "sha256": "849b307de23705220ea0c5538150b5bca564c7003d1fbf9b2bfc9e3ba209a2c0",
+      "bytes": 3065332,
+      "status": "copied-verified",
+      "content_status": "source-material"
+    }
+  ]
+}

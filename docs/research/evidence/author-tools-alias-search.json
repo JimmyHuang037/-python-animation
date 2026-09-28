@@ -1,0 +1,48 @@
+{
+  "retrieved_at": "2026-09-15T09:03:56.949750+00:00",
+  "provider": "Firecrawl cloud v2",
+  "request": {
+    "query": "\"林粒粒\" keynote OR 动画制作 OR AfterEffects OR 剪辑",
+    "limit": 5
+  },
+  "http_status": 200,
+  "response": {
+    "success": true,
+    "data": {
+      "web": [
+        {
+          "url": "https://www.youtube.com/watch?v=IkrTLQ1k6Dk",
+          "title": "课时1 快速理解Keynote界面结构 - YouTube",
+          "description": "课时2-文本在Keynote里面的特殊设置视频教程影片教學. 白嫖VIP•12 ... Go to channel 林粒粒呀 · 3小时超快速入门Python | 动画教学【2025新版】 ...",
+          "position": 1
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=-IEAAO0oLMk",
+          "title": "1/6 用Py4t玩轉禪繞與訊號，你不曾想過的重覆與陣列玩法 - YouTube",
+          "description": "Keynote 动画制作全流程，以及我对AI 动画的一些看法. 马克的技术工作 ... 林粒粒呀•353K views · 43:03. Go to channel 快樂、健康、有用 · 還在天天 ...",
+          "position": 2
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=fwD1CtFrXQs",
+          "title": "從啟程到回歸都是Python 的冒險旅程｜Yen-lung Tsai｜Keynote 基調演講",
+          "description": "PyCon Taiwan 2023｜Keynote 基調演講｜Day 2, 09:30–10:30 說明 ... Go to channel 林粒粒呀 · 3小时超快速入门Python | 动画教学【2025新版】 ...",
+          "position": 3
+        },
+        {
+          "url": "https://www.facebook.com/applealmondblog/videos/iphone-x-%E9%80%8F%E6%98%8E%E6%A1%8C%E5%B8%83%E7%89%B9%E6%95%88/1508623059252074/",
+          "title": "這是把今天下午分享的透明桌布製作為Live Photos 桌布的效果，順道一 ...",
+          "description": "... Live Photos 桌布的效果，順道一提，這段動畫是用Keynote ... 林粒粒. 有難… 9y. 蔡驩懷. 好酷. 9y.",
+          "position": 4
+        },
+        {
+          "url": "https://www.youtube.com/playlist?list=PLLpGRWtNLYa8mKFBmWOPuw17RXSQvNO_T",
+          "title": "shop - YouTube",
+          "description": "用Premiere设置代理文件剪辑4K视频更加快捷. 黄豆Bean. 12K views • 6 ... 3小时超快速入门Python | 动画教学【2025新版】【自学Python教程】【零基础Python】. 林粒粒呀.",
+          "position": 5
+        }
+      ]
+    },
+    "creditsUsed": 2,
+    "id": "01a0a44f-02f9-7164-b005-65166dbf64b6"
+  }
+}

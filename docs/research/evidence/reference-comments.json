@@ -1,0 +1,23 @@
+{
+  "url": "https://api.bilibili.com/x/v2/reply?type=1&oid=113894261588276&pn=1&ps=20&sort=2",
+  "scope": "first hot-comment page only; not exhaustive",
+  "code": 0,
+  "page": {
+    "num": 1,
+    "size": 20,
+    "count": 3445,
+    "acount": 3445
+  },
+  "matches": [
+    {
+      "rpid": 314924608064,
+      "is_author": true,
+      "text": "视频里的Python安装包、配套源码和学习资料，领取方式：搜公综号【林粒粒呀】领取\n包含：✅ Python安装包 ✅ 视频配套源码 ✅ Python经典题目及答案 ✅ 自动化办公项目源码 ✅ 算法题目合集"
+    },
+    {
+      "rpid": 314924608064,
+      "is_author": true,
+      "text": "视频里的Python安装包、配套源码和学习资料，领取方式：搜公综号【林粒粒呀】领取\n包含：✅ Python安装包 ✅ 视频配套源码 ✅ Python经典题目及答案 ✅ 自动化办公项目源码 ✅ 算法题目合集"
+    }
+  ]
+}
