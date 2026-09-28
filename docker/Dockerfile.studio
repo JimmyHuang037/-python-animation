@@ -1,0 +1,22 @@
+FROM mcr.microsoft.com/playwright:v1.58.2-noble
+ARG LOCAL_UID=1000
+ARG LOCAL_GID=1000
+ENV DEBIAN_FRONTEND=noninteractive PYTHONUNBUFFERED=1
+RUN apt-get -o Acquire::Retries=3 update && apt-get -o Acquire::Retries=3 install -y --no-install-recommends \
+    python3 python3-venv python3-numpy ffmpeg fonts-noto-cjk fonts-dejavu-core \
+    && rm -rf /var/lib/apt/lists/*
+RUN python3 -m venv --system-site-packages /opt/venv \
+    && /opt/venv/bin/pip install --no-cache-dir edge-tts==7.2.8
+ENV PATH="/opt/venv/bin:${PATH}"
+COPY studio/promo30/package*.json /workspace/studio/promo30/
+COPY studio/list-demo/package*.json /workspace/studio/list-demo/
+RUN cd /workspace/studio/promo30 && npm ci --ignore-scripts \
+    && sha256sum package-lock.json | cut -d' ' -f1 > node_modules/.lock-hash \
+    && cd /workspace/studio/list-demo && npm ci --ignore-scripts \
+    && sha256sum package-lock.json | cut -d' ' -f1 > node_modules/.lock-hash \
+    && chown -R ${LOCAL_UID}:${LOCAL_GID} /workspace
+COPY docker/studio-entrypoint.sh /usr/local/bin/studio-entrypoint
+RUN chmod +x /usr/local/bin/studio-entrypoint
+WORKDIR /workspace
+USER ${LOCAL_UID}:${LOCAL_GID}
+ENTRYPOINT ["studio-entrypoint"]

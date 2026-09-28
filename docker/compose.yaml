@@ -1,0 +1,74 @@
+name: python-animation
+
+x-studio: &studio
+  image: python-animation-studio:local
+  build:
+    context: ..
+    dockerfile: docker/Dockerfile.studio
+    args:
+      LOCAL_UID: ${LOCAL_UID:-1000}
+      LOCAL_GID: ${LOCAL_GID:-1000}
+  init: true
+  volumes:
+    - ..:/workspace
+    - promo-deps:/workspace/studio/promo30/node_modules
+    - demo-deps:/workspace/studio/list-demo/node_modules
+  environment: &environment
+    HOME: /tmp/course-home
+    DEMO_OUTPUT_DIR: /workspace/build/docker/list-demo
+    IDE_URL: http://ide:9042/
+    RENDER_URL: http://motion:9030/render.html
+    FRAMES_DIR: /workspace/build/docker/promo30/frames
+    MUSIC_PATH: /workspace/build/docker/promo30/music-original.wav
+    PREVIEW_SECONDS: ${PREVIEW_SECONDS:-}
+
+services:
+  motion:
+    <<: *studio
+    restart: unless-stopped
+    working_dir: /workspace/studio/promo30
+    command: [./node_modules/.bin/vite, --host, 0.0.0.0, --port, '9030', --strictPort]
+    ports:
+      - '127.0.0.1:${MOTION_PORT:-9030}:9030'
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:9030/render.html').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 15s
+  ide:
+    image: python-animation-ide:local
+    restart: unless-stopped
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.ide
+      args:
+        LOCAL_UID: ${LOCAL_UID:-1000}
+        LOCAL_GID: ${LOCAL_GID:-1000}
+    init: true
+    environment:
+      DEMO_OUTPUT_DIR: /workspace/build/docker/list-demo
+    volumes:
+      - ..:/workspace
+    ports:
+      - '127.0.0.1:${IDE_PORT:-9042}:9042'
+    healthcheck:
+      test: [CMD, python3, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:9042/healthz', timeout=3)"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 15s
+  worker:
+    <<: *studio
+    profiles: [jobs]
+    shm_size: 1gb
+    depends_on:
+      motion:
+        condition: service_healthy
+      ide:
+        condition: service_healthy
+    command: [python3, /workspace/docker/run-job.py, all]
+
+volumes:
+  promo-deps:
+  demo-deps:

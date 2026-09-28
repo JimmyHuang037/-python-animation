@@ -1,0 +1,12 @@
+**
+!docker/
+!docker/**
+!studio/
+!studio/promo30/
+!studio/promo30/package.json
+!studio/promo30/package-lock.json
+!studio/list-demo/
+!studio/list-demo/package.json
+!studio/list-demo/package-lock.json
+docker/.env
+docker/.cache/

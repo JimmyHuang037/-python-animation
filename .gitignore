@@ -25,3 +25,7 @@ local-runtime/
 /build/list-demo/extensions/
 /build/list-demo/server-config.yaml
 /build/list-demo/raw/
+
+# Docker 验证输出与独立 IDE 会话；不覆盖已定稿样片。
+/build/docker/
+/docker/.cache/

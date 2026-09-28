@@ -13,7 +13,7 @@ const renderer=new Renderer(project);
 renderer.onFinished.subscribe(result=>(window as any).renderResult=result);
 (window as any).startRender=async()=>{
  await document.fonts.load('600 36px "Noto Sans CJK SC"');
- await renderer.render({name:'promo30',range:[0,30],fps:30,size:new Vector2(1280,720),resolutionScale:1.5,colorSpace:'srgb',background:'#F4F3EB',exporter:{name:'capture',options:{}}});
+ await renderer.render({name:'promo30',range:[0,(window as any).renderSeconds || 30],fps:30,size:new Vector2(1280,720),resolutionScale:1.5,colorSpace:'srgb',background:'#F4F3EB',exporter:{name:'capture',options:{}}});
  (window as any).renderDone=true;
 };
 (window as any).ready=true;

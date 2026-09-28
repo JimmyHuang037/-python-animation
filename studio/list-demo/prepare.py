@@ -1,9 +1,9 @@
 """Prepare checked Python source and Yunxi narration; no synthetic execution output."""
-import asyncio,json,subprocess,wave
+import asyncio,json,subprocess,wave,os,shutil
 from pathlib import Path
 import edge_tts
 ROOT=Path(__file__).resolve().parents[2]
-OUT=ROOT/'build/list-demo'
+OUT=Path(os.environ.get('DEMO_OUTPUT_DIR',ROOT/'build/list-demo')).resolve()
 CODE=(Path(__file__).resolve().parent/'shopping.py').read_text().splitlines()
 TEXT=['用五行代码，创建一个购物列表。','第一行，用一对空的方括号，创建购物列表。','接着，用 append，把键盘添加到列表末尾。','再添加一个键帽。现在，列表里有两个商品。','如果不买键帽了，就用 remove，把它从列表中删除。','最后，用 print，打印这个购物列表。','运行代码。输出里只剩下键盘，因为键帽已经被删除了。']
 async def main():
@@ -15,6 +15,9 @@ async def main():
  segments=[]
  for i,text in enumerate(TEXT):
   mp3=OUT/f'voice-{i:02}.mp3';wav=OUT/f'voice-{i:02}.wav'
+  cached=ROOT/'build/list-demo'/mp3.name
+  if not mp3.exists() and cached.exists() and cached.resolve()!=mp3.resolve():
+   shutil.copyfile(cached,mp3)
   if not mp3.exists() or mp3.stat().st_size==0:
    for attempt in range(4):
     try:
@@ -24,7 +27,7 @@ async def main():
      await asyncio.sleep(2)
   subprocess.run(['ffmpeg','-v','error','-y','-i',str(mp3),'-ar','48000','-ac','1',str(wav)],check=True)
   with wave.open(str(wav)) as f:duration=f.getnframes()/f.getframerate()
-  segments.append({'index':i,'text':text,'duration':duration,'wav':str(wav),'code':CODE[i-1] if 1<=i<=5 else None})
+  segments.append({'index':i,'text':text,'duration':duration,'wav':wav.name,'code':CODE[i-1] if 1<=i<=5 else None})
   print(i,round(duration,2),text,flush=True)
  (OUT/'segments.json').write_text(json.dumps(segments,ensure_ascii=False,indent=2))
 asyncio.run(main())

@@ -22,7 +22,9 @@ node record.mjs
 python3 compose.py
 ```
 
-Playwright 固定为 1.58.2。本机显式复用 Chromium 1228，已实际录制验证；其他机器用 `CHROMIUM_PATH` 指定浏览器，建议使用匹配的 Playwright Chromium。服务仅监听 `127.0.0.1:9042`，不用生产环境。录制过程中不用人工按键。
+Playwright 固定为 1.58.2。默认使用该版本管理的 Chromium；本机首次安装可执行 `npx playwright install chromium`，也可用 `CHROMIUM_PATH` 显式覆盖。服务本地默认监听 `127.0.0.1:9042`；Docker 内部监听 `0.0.0.0`、宿主端口仅绑定回环地址。录制过程中不用人工按键。
+
+Linux Docker 启动与实际录制见 [Docker 入口](../../docker/README.md)。`IDE_URL`、`IDE_WORKSPACE` 和 `DEMO_OUTPUT_DIR` 可配置服务地址与共享路径；新声音时间表使用相对文件名，合成也兼容旧绝对路径时间表中的同名本地声音文件。
 
 产物位于 `../../build/list-demo/`：`shopping-list-yunxi.mp4`、`captions.srt`、逐句声音、`events.json`、`verification.json` 和关键帧。浏览器源录像为 25fps，MP4 交付为 30fps，转换不增加动作采样信息。声音按实际事件对齐，不截断口播；网络 TTS 再生成的时长可能变化。
 

@@ -1,0 +1,24 @@
+#!/bin/bash
+set -euo pipefail
+directory=$(dirname "$(readlink -f "$0")")
+export LOCAL_UID=${LOCAL_UID:-$(id -u)}
+export LOCAL_GID=${LOCAL_GID:-$(id -g)}
+mkdir -p "$directory/../build/docker/list-demo" "$directory/../build/docker/promo30"
+compose=(docker compose -f "$directory/compose.yaml")
+case "${1:-up}" in
+  preview)
+    export PREVIEW_SECONDS=10
+    "${compose[@]}" up -d --wait motion ide
+    "${compose[@]}" run --rm --no-deps worker python3 /workspace/docker/run-job.py all
+    ;;
+  build) "${compose[@]}" build motion ide ;;
+  up) "${compose[@]}" up -d --wait motion ide ;;
+  demo|animation|all)
+    "${compose[@]}" up -d --wait motion ide
+    "${compose[@]}" run --rm --no-deps worker python3 /workspace/docker/run-job.py "$1"
+    ;;
+  down) "${compose[@]}" down ;;
+  status) "${compose[@]}" ps ;;
+  logs) "${compose[@]}" logs --tail 100 ;;
+  *) echo 'Usage: course {build|up|preview|demo|animation|all|down|status|logs}' >&2; exit 2 ;;
+esac

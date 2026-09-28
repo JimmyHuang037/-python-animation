@@ -56,7 +56,9 @@ python3 soundtrack.py
 ffmpeg -y -framerate 30 -i ../../build/promo30/frames/%05d.png -i ../../build/promo30/music-original.wav -frames:v 900 -t 30 -c:v libx264 -preset medium -crf 18 -pix_fmt yuv420p -c:a aac -b:a 192k -movflags +faststart ../../build/promo30/python-course-promo-30s.mp4
 ```
 
-需要 Node.js、FFmpeg、Python + NumPy，以及 Playwright Chromium。render.mjs 默认复用此机器已安装的 Chromium 路径；迁移时可用 CHROMIUM_PATH 覆盖。字体使用本机 Noto Sans CJK SC。渲染服务只绑定 127.0.0.1:9030。
+需要 Node.js、FFmpeg、Python + NumPy，以及 Playwright Chromium。render.mjs 默认使用 Playwright 匹配的 Chromium，首次本地安装可执行 `npx playwright install chromium`；也可用 CHROMIUM_PATH 覆盖。字体使用 Noto Sans CJK SC。本地渲染服务默认绑定 127.0.0.1:9030；Docker 配置内部监听 0.0.0.0，宿主端口仍只绑定回环地址。
+
+Linux Docker 启动、按需渲染与远程浏览器访问见 [Docker 入口](../../docker/README.md)。
 
 
 依赖版本锁在 package-lock.json。安装审计报告有 3 个 moderate、2 个 high 上游问题；此工具仅供本地离线制作，未部署为公网服务。未为修复审计问题擅自替换动画引擎或跨版本升级。
