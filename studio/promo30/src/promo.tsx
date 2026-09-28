@@ -9,6 +9,17 @@ const ease=(v:number)=>1-Math.pow(1-clamp(v),3);
 const T=(p:any)=><Txt fontFamily={font} fill={C.ink} fontSize={36} fontWeight={600} {...p}/>;
 export default makeScene2D(function*(view){
   const time=createSignal(0);
+  // Narration variants remap scene time; the clock and progress retain real time.
+  const elapsed=createSignal(0);
+  const timing=(window as any).__promoTiming as Array<{
+    start_frame:number;end_frame:number;source_start:number;source_end:number;
+  }> | undefined;
+  const sceneTime=(seconds:number)=>{
+    if(!timing)return seconds;
+    const segment=timing.find(s=>seconds*30<s.end_frame) || timing[timing.length-1];
+    const progress=clamp((seconds*30-segment.start_frame)/(segment.end_frame-segment.start_frame));
+    return segment.source_start+progress*(segment.source_end-segment.source_start);
+  };
   const enter=(a:number,d=.65)=>ease((time()-a)/d);
   const vis=(a:number,b:number)=>enter(a,.3)*(1-ease((time()-(b-.25))/.25));
   view.fill(C.bg);
@@ -18,8 +29,8 @@ export default makeScene2D(function*(view){
     <T text="PYTHON / 学得明白" fontSize={19} letterSpacing={2} x={-455} y={-303}/>
     <T text="大学 Python · 动画课" fontSize={17} fill={C.muted} x={456} y={-303}/>
     <Line points={[[-570,-270],[570,-270]]} stroke={C.line} lineWidth={1}/>
-    <Rect x={-640} y={355} offsetX={-1} width={()=>1280*time()/30} height={10} fill={C.ink}/>
-    <T x={505} y={312} fontSize={16} fill={C.muted} text={()=>`${String(Math.min(30,Math.floor(time()))).padStart(2,'0')} / 30`}/>
+    <Rect x={-640} y={355} offsetX={-1} width={()=>1280*elapsed()/30} height={10} fill={C.ink}/>
+    <T x={505} y={312} fontSize={16} fill={C.muted} text={()=>`${String(Math.min(30,Math.floor(elapsed()))).padStart(2,'0')} / 30`}/>
   </>);
   // 00–05: four pain points, accumulating in staggered motion.
   view.add(<Node opacity={()=>vis(0,5)} y={()=>(1-enter(0))*24}>
@@ -103,5 +114,5 @@ export default makeScene2D(function*(view){
     <T text="从这一课，开始看懂 Python。" fontSize={33} y={223} opacity={()=>enter(27.1)}/>
     <T text="看懂 · 会做 · 能复习" fontSize={16} fill={C.muted} y={280} opacity={()=>enter(27.5)}/>
   </Node>);
-  yield* tween(30,v=>time(v*30),linear);
+  yield* tween(30,v=>{elapsed(v*30);time(sceneTime(v*30));},linear);
 });

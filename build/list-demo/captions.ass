@@ -1,0 +1,19 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 2
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Caption,Noto Sans CJK SC,34,&H00FFFFFF,&H00FFFFFF,&H00191919,&H00191919,0,0,0,0,100,100,0,0,1,0,0,2,40,40,54,1
+Style: Label,Noto Sans CJK SC,19,&H0092A49F,&H00FFFFFF,&H00191919,&H00191919,0,0,0,0,100,100,0,0,1,0,0,2,40,40,17,1
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:40.43,Label,,0,0,0,,AI 自动输入 · Python 真实运行
+Dialogue: 1,0:00:00.00,0:00:03.65,Caption,,0,0,0,,用五行代码，创建一个购物列表。
+Dialogue: 1,0:00:04.45,0:00:08.96,Caption,,0,0,0,,第一行，用一对空的方括号，创建购物列表。
+Dialogue: 1,0:00:09.76,0:00:14.68,Caption,,0,0,0,,接着，用 append，把键盘添加到列表末尾。
+Dialogue: 1,0:00:15.48,0:00:20.66,Caption,,0,0,0,,再添加一个键帽。现在，列表里有两个商品。
+Dialogue: 1,0:00:21.46,0:00:26.26,Caption,,0,0,0,,如果不买键帽了，就用 remove，把它从列表中删除。
+Dialogue: 1,0:00:27.06,0:00:31.17,Caption,,0,0,0,,最后，用 print，打印这个购物列表。
+Dialogue: 1,0:00:31.97,0:00:37.83,Caption,,0,0,0,,运行代码。输出里只剩下键盘，因为键帽已经被删除了。

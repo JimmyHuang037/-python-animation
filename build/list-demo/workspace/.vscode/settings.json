@@ -1,0 +1,60 @@
+{
+  "workbench.colorTheme": "Dark Modern",
+  "editor.fontSize": 34,
+  "editor.lineHeight": 56,
+  "editor.fontFamily": "'DejaVu Sans Mono', 'Noto Sans CJK SC', monospace",
+  "editor.minimap.enabled": false,
+  "editor.wordWrap": "off",
+  "editor.quickSuggestions": {
+    "comments": "off",
+    "strings": "off",
+    "other": "off"
+  },
+  "editor.suggestOnTriggerCharacters": false,
+  "editor.parameterHints.enabled": false,
+  "editor.autoClosingBrackets": "never",
+  "editor.autoClosingQuotes": "never",
+  "editor.autoIndent": "none",
+  "editor.formatOnType": false,
+  "editor.formatOnSave": false,
+  "editor.renderLineHighlight": "all",
+  "editor.cursorBlinking": "solid",
+  "editor.stickyScroll.enabled": false,
+  "editor.padding.top": 36,
+  "workbench.startupEditor": "none",
+  "workbench.tips.enabled": false,
+  "workbench.activityBar.location": "hidden",
+  "workbench.statusBar.visible": false,
+  "breadcrumbs.enabled": false,
+  "terminal.integrated.fontSize": 30,
+  "terminal.integrated.fontFamily": "'DejaVu Sans Mono', 'Noto Sans CJK SC'",
+  "terminal.integrated.shellIntegration.enabled": false,
+  "terminal.integrated.env.linux": {
+    "PS1": "❯ ",
+    "PROMPT_COMMAND": ""
+  },
+  "terminal.integrated.defaultProfile.linux": "demo",
+  "security.workspace.trust.enabled": false,
+  "window.commandCenter": false,
+  "window.menuBarVisibility": "hidden",
+  "workbench.layoutControl.enabled": false,
+  "git.enabled": false,
+  "chat.disableAIFeatures": true,
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "workbench.editor.enablePreview": false,
+  "terminal.integrated.accessibilitySupport": "on",
+  "terminal.integrated.profiles.linux": {
+    "demo": {
+      "path": "/bin/bash",
+      "args": [
+        "--noprofile",
+        "--norc"
+      ],
+      "env": {
+        "PS1": "❯ ",
+        "PROMPT_COMMAND": ""
+      }
+    }
+  },
+  "terminal.integrated.tabs.enabled": false
+}

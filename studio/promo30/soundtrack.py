@@ -1,5 +1,7 @@
 """Generate an original quiet instrumental bed. No sampled or third-party audio."""
 from pathlib import Path
+import os
+import json
 import numpy as np
 import wave
 sr=48000
@@ -18,12 +20,16 @@ for beat in range(50):
     c=chords[(beat//8)%4]
     tone(beat*.6,1.3,c[beat%4]+12,.055,(-1)**beat)
     if beat%4==0:tone(beat*.6,2,c[0]-12,.11)
-for start in [5,6,10,19,25]:
+cue_times=[5,6,10,19,25]
+if os.getenv('TIMING_PATH'):
+    timing=json.loads(Path(os.environ['TIMING_PATH']).read_text())
+    cue_times=[r['start_frame']/30 for r in timing if r['source_start'] in cue_times]
+for start in cue_times:
     for j,n in enumerate([72,76,79]):tone(start+j*.07,.7,n,.035,j-1)
 t=np.arange(len(out))/sr
 out*=np.minimum(1,t/.7)[:,None]*np.minimum(1,(30-t)/1.4)[:,None]
 peak=np.max(np.abs(out)); out*=.25/max(peak,1e-9)
-p=Path(__file__).resolve().parents[2]/'build/promo30/music-original.wav'
+p=Path(os.environ['MUSIC_PATH']) if os.getenv('MUSIC_PATH') else Path(__file__).resolve().parents[2]/'build/promo30/music-original.wav'
 with wave.open(str(p),'wb') as f:
     f.setnchannels(2);f.setsampwidth(2);f.setframerate(sr);f.writeframes((out*32767).astype('<i2').tobytes())
 print(p)

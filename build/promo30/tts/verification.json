@@ -1,0 +1,12 @@
+{
+  "duration": "30.000000",
+  "video_frames": "900",
+  "video_stream_unchanged": true,
+  "full_decode": "passed",
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "edge_tts_version": "7.2.8",
+  "segments_fit": true,
+  "loudness_summary": "Summary:\n\n  Integrated loudness:\n    I:         -18.0 LUFS\n    Threshold: -29.5 LUFS\n\n  Loudness range:\n    LRA:         4.4 LU\n    Threshold: -39.5 LUFS\n    LRA low:   -22.1 LUFS\n    LRA high:  -17.7 LUFS\n\n  True peak:\n    Peak:       -5.0 dBFS\n",
+  "manual_listening": "not performed",
+  "sha256": "5d2ae4f8e504230b6a5e73285c68743ddf9f2c27340314874e60f4ca0fd9b0e0"
+}

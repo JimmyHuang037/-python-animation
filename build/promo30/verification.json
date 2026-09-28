@@ -1,0 +1,40 @@
+{
+  "programs": [],
+  "streams": [
+    {
+      "codec_name": "h264",
+      "codec_type": "video",
+      "width": 1920,
+      "height": 1080,
+      "r_frame_rate": "30/1",
+      "duration": "30.000000",
+      "nb_frames": "900"
+    },
+    {
+      "codec_name": "aac",
+      "codec_type": "audio",
+      "r_frame_rate": "0/0",
+      "duration": "30.000000",
+      "nb_frames": "1408"
+    }
+  ],
+  "format": {
+    "duration": "30.000000",
+    "size": "1881175"
+  },
+  "checks": {
+    "typescript_noEmit": "PASS",
+    "renderer_result": 0,
+    "frames": 900,
+    "ffmpeg_full_decode": "PASS",
+    "visual_review": "9 sampled frames and final poster inspected; not a human continuous-playback review",
+    "audio": "Original synthesized instrumental, no narration",
+    "scope": "30 seconds entirely Motion Canvas; no Python typing or screen capture"
+  },
+  "sha256": {
+    "AGENTS.md": "8786fbdb706b23113913b380f41f74d2fbb1662a1025ab191b25bbb414472214",
+    "studio/promo30/src/promo.tsx": "3f9f2a973654a38f63e327eef4117b09e1e8cee7b62feb5e5c027217b06cc2aa",
+    "studio/promo30/package-lock.json": "a5dc48fc9024a40066de5670080a574c000258e13b1d636f4a40575f336eec83",
+    "build/promo30/python-course-promo-30s.mp4": "2ab17ba46840ee1610c6cd3812a011efbc73fda3f776a0ddcc8547ffb9e07c8e"
+  }
+}

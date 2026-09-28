@@ -1,16 +1,27 @@
-# 本地材料与抓取证据允许纳入版本管理。
-# 单个文件超过 100 MB（100,000,000 字节）不上传 Gitee；提交前检查并逐项添加忽略规则。
-build/
+# 源码、工程 .meta、材料、字幕及验收记录允许纳入版本管理。
+# 单个文件超过 100 MB（100,000,000 字节）不上传 Gitee。
+# Git 无法按大小自动忽略；提交前检查，新超限文件逐项追加规则。
+
+# 依赖、本地运行环境与缓存
 node_modules/
 .venv/
-.env
-.env.*
-*.log
-**/media/
-
-# 本地 Python 环境与缓存
 .venv-*/
 __pycache__/
 *.py[cod]
-.claude/settings.local.json
+local-runtime/
+.cache/
+
+# 本地配置和日志
+.env
+.env.*
 !.env.example
+.claude/settings.local.json
+*.log
+
+# 五行实操录制的本地依赖和编辑器会话
+/build/list-demo/tools/
+/build/list-demo/code-server-*.tar.gz
+/build/list-demo/user-data/
+/build/list-demo/extensions/
+/build/list-demo/server-config.yaml
+/build/list-demo/raw/

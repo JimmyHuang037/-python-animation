@@ -1,0 +1,51 @@
+[
+  {
+    "index": 0,
+    "text": "用五行代码，创建一个购物列表。",
+    "duration": 3.648,
+    "wav": "/home/jimmyhuang/python-animation/build/list-demo/voice-00.wav",
+    "code": null
+  },
+  {
+    "index": 1,
+    "text": "第一行，用一对空的方括号，创建购物列表。",
+    "duration": 4.512,
+    "wav": "/home/jimmyhuang/python-animation/build/list-demo/voice-01.wav",
+    "code": "shopping_list = []"
+  },
+  {
+    "index": 2,
+    "text": "接着，用 append，把键盘添加到列表末尾。",
+    "duration": 4.92,
+    "wav": "/home/jimmyhuang/python-animation/build/list-demo/voice-02.wav",
+    "code": "shopping_list.append(\"键盘\")"
+  },
+  {
+    "index": 3,
+    "text": "再添加一个键帽。现在，列表里有两个商品。",
+    "duration": 5.184,
+    "wav": "/home/jimmyhuang/python-animation/build/list-demo/voice-03.wav",
+    "code": "shopping_list.append(\"键帽\")"
+  },
+  {
+    "index": 4,
+    "text": "如果不买键帽了，就用 remove，把它从列表中删除。",
+    "duration": 4.8,
+    "wav": "/home/jimmyhuang/python-animation/build/list-demo/voice-04.wav",
+    "code": "shopping_list.remove(\"键帽\")"
+  },
+  {
+    "index": 5,
+    "text": "最后，用 print，打印这个购物列表。",
+    "duration": 4.104,
+    "wav": "/home/jimmyhuang/python-animation/build/list-demo/voice-05.wav",
+    "code": "print(shopping_list)"
+  },
+  {
+    "index": 6,
+    "text": "运行代码。输出里只剩下键盘，因为键帽已经被删除了。",
+    "duration": 5.856,
+    "wav": "/home/jimmyhuang/python-animation/build/list-demo/voice-06.wav",
+    "code": null
+  }
+]

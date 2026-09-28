@@ -1,0 +1,5 @@
+{
+  "source": "shopping_list = []\nshopping_list.append(\"键盘\")\nshopping_list.append(\"键帽\")\nshopping_list.remove(\"键帽\")\nprint(shopping_list)\n",
+  "stdout": "['键盘']\n",
+  "returncode": 0
+}

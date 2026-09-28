@@ -1,0 +1,15 @@
+{
+  "source_sha256": "f6f77e30cf9d740c73a349cbcd95f58beabe8c8cda3ab442e11349a70a8cdca4",
+  "real_recorded_output": "['键盘']\n",
+  "independent_execution_stdout": "['键盘']\n",
+  "independent_execution_exit_code": 0,
+  "slate_trim_seconds": 8.52,
+  "recording_fps": 25.0,
+  "duration": 40.433333,
+  "width": 1920,
+  "height": 1080,
+  "decode_ok": true,
+  "voice": "zh-CN-YunxiNeural",
+  "audio_method": "Reuse existing edge-tts 7.2.8 environment and voice; generate lesson-specific narration",
+  "continuous_human_review": false
+}

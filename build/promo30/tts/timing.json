@@ -1,0 +1,72 @@
+[
+  {
+    "index": 1,
+    "start": 0.15,
+    "end": 3.75,
+    "slot_end": 4.85,
+    "text": "Python 难学，听不懂，也不想动手？",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "duration": 3.6
+  },
+  {
+    "index": 2,
+    "start": 6.05,
+    "end": 9.65,
+    "slot_end": 9.85,
+    "text": "从学分要求出发，明确期末目标。",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "duration": 3.6
+  },
+  {
+    "index": 3,
+    "start": 10.1,
+    "end": 12.716,
+    "slot_end": 12.9,
+    "text": "用动画，让抽象变直观。",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+10%",
+    "duration": 2.616
+  },
+  {
+    "index": 4,
+    "start": 13.05,
+    "end": 15.738000000000001,
+    "slot_end": 15.9,
+    "text": "把新元素，加到列表末尾。",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+10%",
+    "duration": 2.688
+  },
+  {
+    "index": 5,
+    "start": 16.05,
+    "end": 18.810000000000002,
+    "slot_end": 18.85,
+    "text": "看清每一步，理解变化。",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "duration": 2.76
+  },
+  {
+    "index": 6,
+    "start": 19.1,
+    "end": 23.996000000000002,
+    "slot_end": 24.85,
+    "text": "结合上海高校考情，熟悉判断、填空和编程。",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "duration": 4.896
+  },
+  {
+    "index": 7,
+    "start": 25.1,
+    "end": 28.772000000000002,
+    "slot_end": 29.65,
+    "text": "让学习更清楚，向期末目标迈进。",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+0%",
+    "duration": 3.672
+  }
+]

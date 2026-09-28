@@ -1,0 +1,9 @@
+{
+  "duration": 30,
+  "frames": 900,
+  "full_decode": "passed",
+  "voice": "zh-CN-YunxiNeural",
+  "segments_fit": true,
+  "loudness_summary": "Summary:\n\n  Integrated loudness:\n    I:         -19.0 LUFS\n    Threshold: -30.7 LUFS\n\n  Loudness range:\n    LRA:         6.3 LU\n    Threshold: -40.7 LUFS\n    LRA low:   -24.8 LUFS\n    LRA high:  -18.5 LUFS\n\n  True peak:\n    Peak:       -4.9 dBFS\n",
+  "manual_listening": "not performed"
+}

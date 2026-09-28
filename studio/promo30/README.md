@@ -1,5 +1,27 @@
 # Python promo30
 
+## Qwen3-TTS API 试听版
+
+已产出 [Qwen 晨煦男声版](../../build/promo30/python-course-promo-30s-qwen-ethan.mp4)。使用 `qwen3-tts-instruct-flash-2026-01-26`／`Ethan`，八段口播包含“一站式解决！”。该画面改为第 5–7 秒，声音从第 5.4 秒开始；学分目标画面改为第 7–10 秒，其余主要时点保留，总长 30 秒。Motion Canvas 已重新渲染，音乐提示音同步调整。
+
+复现（本目录；API Key 从环境变量读取，或用 `--key-file` 指向项目外的密钥文件，不在代码中填写密钥）：
+
+```bash
+python3 qwen_voiceover.py --voice Ethan
+python3 qwen_assemble.py --prepare
+TIMING_PATH=../../build/promo30/qwen-ethan/timing.json MUSIC_PATH=../../build/promo30/qwen-ethan/music.wav python3 soundtrack.py
+npm run serve -- --port 9031 --strictPort
+# 另一个终端，同目录
+TIMING_PATH=../../build/promo30/qwen-ethan/timing.json FRAMES_DIR=../../build/promo30/qwen-ethan/frames RENDER_URL=http://127.0.0.1:9031/render.html node render.mjs
+python3 qwen_assemble.py
+```
+
+合成脚本缓存相同请求的音频，重复运行可复用，不保存凭据或临时下载 URL。官方接口与音色依据：[API](https://help.aliyun.com/zh/model-studio/qwen-tts-api)、[音色](https://help.aliyun.com/zh/model-studio/qwen-tts-voice-list)。本轮八次 API 返回共 196 计费字符；不能直接用 Python 字符串长度 110 代替计费字符。按 0.8 元／万字符估算约 0.01568 元，未核查账号账单或免费额度。
+
+音频、字幕、时间表、API 用量和验证记录在 `build/promo30/qwen-ethan/`；这些生成文件被 Git 忽略，保留本地文件才能复用本次音色表现，重新调用的时长可能变化。`qwen_assemble.py --prepare` 会检查新声音是否仍能放入时间窗，超出即报错，不能跳过后直接合成。字幕为独立 SRT，未烧录到画面。未完成真人听审。
+
+## 原音乐与 Edge TTS 版本
+
 30 秒全 Motion Canvas 宣传动画。没有 Python 编辑器录屏或逐字代码。主要依据为 Motion Canvas 官方文档与官方 examples，不依赖低星社区 skill 插件。
 
 - `src/promo.tsx`：完整画面与时间轴，逻辑尺寸 1280×720。

@@ -1,0 +1,23 @@
+{
+  "model": "qwen3-tts-instruct-flash-2026-01-26",
+  "voice": "Ethan",
+  "duration": 30,
+  "frames": 900,
+  "size": [
+    1920,
+    1080
+  ],
+  "full_decode": "passed",
+  "segments_fit": true,
+  "slogan_audio_seconds": 1.04,
+  "slogan_screen_seconds": [
+    5,
+    7
+  ],
+  "api_usage_characters": 196,
+  "estimated_cost_yuan_before_free_quota": 0.01568,
+  "manual_listening": "not performed",
+  "visual_review": "slogan frame inspected",
+  "loudness": "Summary:\n\n  Integrated loudness:\n    I:         -18.9 LUFS\n    Threshold: -30.8 LUFS\n\n  Loudness range:\n    LRA:         4.1 LU\n    Threshold: -40.9 LUFS\n    LRA low:   -22.9 LUFS\n    LRA high:  -18.8 LUFS\n\n  True peak:\n    Peak:       -4.9 dBFS\n",
+  "video_sha256": "b77c8b015226e84c099e281546fcdcec81fb16fffc47b38361ab1e1003d83c9c"
+}

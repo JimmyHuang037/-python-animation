@@ -1,0 +1,1 @@
+{"name":"python-list-demo","private":true,"type":"module","dependencies":{"playwright":"1.58.2"},"scripts":{"record":"node record.mjs"}}
