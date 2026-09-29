@@ -1,5 +1,9 @@
 # 需求更新与来源
 
+## 2026-09-29 本机 WSL 与 Docker Desktop
+
+来源：本任务用户要求将 python-animation 克隆到 WSL，并在 Docker Desktop 中看到 Motion Canvas 与 IDE 容器。本机工作目录为 `/home/yxsj98/python-animation`，使用 Ubuntu-24.04 与 Docker Desktop Linux 引擎；原 Windows 克隆保留。环境搭建完成后，用户要求将本次说明变更提交为 Gitee Pull Request；不包含视频制作。
+
 ## 2026-09-19 每课结构更新
 
 来源：估算Python课程及格学时任务（`01a0a42e-7c42-7793-81c4-7f18546595b8`）最新用户消息，附件 `/home/jimmyhuang/.codex-wsl/attachments/f7c39a98-5429-4fd0-a25f-146e04d92136/video_Python列表 _ 创一个购物..._0.mp4`。用户明确每课前动画、后编程环境代码实操，只出课程大纲、技术实现暂不考虑。覆盖requirements原“每节根据任务组合，不强制前半动画后半录屏”。

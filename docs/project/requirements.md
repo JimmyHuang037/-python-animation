@@ -68,7 +68,7 @@
 
 ## 6. 工程范围
 
-- 项目位于 `/home/jimmyhuang/python-animation`，主要工作在 WSL2。
+- 本机项目位于 Ubuntu-24.04 的 `/home/yxsj98/python-animation`，主要工作在 WSL2；`/home/jimmyhuang/python-animation` 为原开发机路径。
 - 初期不自建学生网页 IDE 或完整课程平台；题目和代码文件能交给上机老师使用即可。
 - 已授权本轮建立项目目录、记忆文档、导入最新材料和调研架构。2026-09-28 用户已授权 Motion Canvas 实施及 30 秒演示视频渲染。
 - Firecrawl 目前复用已有云 API；Docker 公共服务仍是已研究方案，未部署。
