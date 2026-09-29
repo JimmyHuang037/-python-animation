@@ -1,6 +1,15 @@
 # 当前状态
 
-更新时间：2026-09-28。
+更新时间：2026-09-29。
+
+## Ubuntu-24.04 与 Docker Desktop：2026-09-29
+
+- 从 Gitee HTTPS 克隆到 `/home/yxsj98/python-animation`，克隆时提交为 `9acc9ab`；原 Windows 克隆保留。
+- 已启用 Docker Desktop 的 Ubuntu-24.04 WSL 集成；在 WSL 构建并启动 Compose 项目 `python-animation`，`python-animation-motion-1` 与 `python-animation-ide-1` 均 healthy，Windows Docker CLI 也能列出。
+- 两容器均挂载本机 WSL 仓库到 `/workspace`。入口：Motion Canvas `http://127.0.0.1:9030/`，IDE `http://127.0.0.1:9042/?folder=/workspace`；Python 为 3.12.14。
+- Playwright 实际加载验证：Motion Canvas 显示 30 秒 promo 时间轴和编辑器，IDE 显示完整仓库目录；两页 HTTP 200，最终加载无 JavaScript 异常。Canvas 初次依赖预处理期间出现一次空白页，重新加载后恢复，无需修改应用源码。
+- 从新 WSL 终端运行 `cd ~/python-animation && ./docker/course status` 查看；旧终端尚未刷新 docker 组时，可使用 `sg docker -c './docker/course status'`。配置为 `restart: unless-stopped`，Docker 引擎启动后自动恢复未手动停止的服务。
+- 本次只验证环境与页面，未运行视频渲染或录制；环境搭建完成后，用户要求通过 Gitee Pull Request 同步本次说明变更。
 
 ## 旧大写目录清理：2026-09-28
 
