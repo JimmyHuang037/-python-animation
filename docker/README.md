@@ -6,6 +6,14 @@
 ## 环境和启动
 
 需要 Linux x86_64、Docker Engine、Compose v2，以及用户能访问 Docker socket。
+
+用 Docker Desktop 承载引擎时，必须在 Settings → Resources → WSL integration 勾选目标发行版。
+未勾选的表现是：WSL 内没有 `docker` 命令、没有 `/var/run/docker.sock`，从 Windows 侧
+`docker.exe` 挂载 `\\wsl.localhost\<发行版>\...` 报
+`stat /run/guest-services/distro-services/<发行版>.sock: no such file or directory`。
+勾选后发行版内自动出现 CLI 与 socket，用户被加入 `docker` 组；已登录的会话要重开终端才带上该组，
+临时可用 `sg docker -c '<命令>'` 执行。
+
 首次运行（仓库已经复制到 `~/python-animation`）：
 
 ```bash
@@ -29,6 +37,30 @@ ssh -N -L 19030:127.0.0.1:9030 -L 19042:127.0.0.1:9042 qwer@172.25.233.189
 ```bash
 MOTION_PORT=29030 IDE_PORT=29042 ./docker/course up
 ```
+
+### Docker Hub 被 DNS 污染时
+
+某些网络下 `auth.docker.io` 与 `registry-1.docker.io` 只解析到无关的 IPv6 地址且没有 A 记录，
+`ide` 镜像的 `FROM python:3.12-slim-bookworm` 会以
+`DeadlineExceeded: failed to fetch anonymous token ... i/o timeout` 失败。
+同一网络下 `mcr.microsoft.com`（studio 基础镜像）、GitHub releases（code-server）、PyPI 与 apt 源不受影响，
+所以失败只表现为 Hub 拉取超时，不是构建脚本问题。
+
+持久做法是在 Docker Desktop → Settings → Docker Engine 加镜像加速：
+
+```json
+{ "registry-mirrors": ["https://docker.m.daocloud.io"] }
+```
+
+临时做法是先从镜像源拉取再打回原 tag，不修改本仓任何文件：
+
+```bash
+docker pull docker.m.daocloud.io/library/python:3.12-slim-bookworm
+docker tag docker.m.daocloud.io/library/python:3.12-slim-bookworm python:3.12-slim-bookworm
+./docker/course build
+```
+
+该 tag 只存在于本地镜像库；换机器或清理镜像后要重做，长期使用请改用上面的持久配置。
 
 ## 制作与文件
 

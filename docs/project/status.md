@@ -1,6 +1,18 @@
 # 当前状态
 
-更新时间：2026-09-28。
+更新时间：2026-09-29。
+
+## 本机 Docker 工作台搭建：2026-09-29
+
+- 在新的 WSL2 发行版 `Ubuntu-24.04`（用户 `yanghua0`，仓库在 `/home/yanghua0/python-animation`）从零搭建 Docker 工作台。开始前该发行版内没有 docker CLI、没有 `/var/run/docker.sock`；Windows 侧 Docker Desktop 4.93.0（引擎 29.8.1、Compose v5.5.1）在运行，但 0 容器 0 镜像。
+- 根因是 Docker Desktop 未对该发行版开启 WSL integration，Windows 侧 `docker.exe` 也因此无法挂载 `\\wsl.localhost`。用户在 GUI 勾选后，发行版内自动出现 `/usr/bin/docker`、`/var/run/docker.sock` 与 `docker` 组成员身份；已登录会话需重开终端或临时用 `sg docker -c` 才带该组。
+- 首次 `./docker/course build` 失败于 `ide` 目标：本网络对 `auth.docker.io`／`registry-1.docker.io` 做 DNS 污染，只返回无关 IPv6 且无 A 记录。处理办法已写入 [Docker 工作台说明](../../docker/README.md)；本次采用临时方式，从 `docker.m.daocloud.io` 拉取 `python:3.12-slim-bookworm` 再打回原 tag，未修改仓库内 Dockerfile。该 tag 只在本地镜像库，不随仓库迁移。
+- 第二次构建成功：`python-animation-studio:local` 3.95GB、`python-animation-ide:local` 1.4GB。`./docker/course up` 后 motion 与 ide 均 healthy，发布在回环 9030／9042；本机无旧样片服务占用，未改用 29030／29042。
+- 容器内实测：motion 侧 Node v24.13.0、npm 11.6.2、Python 3.12.3、numpy 1.26.4、ffmpeg 6.1.1、edge-tts 7.2.8、Playwright 1.58.2，Chromium 145.0.7632.6 无头启动成功；ide 侧 Python 3.12.14、code-server 4.139.1、git 2.39.5。两容器 `/workspace` 均可写，promo30 与 list-demo 的 node_modules 已就位。
+- HTTP 核对：`http://127.0.0.1:9030/` 与 `/render.html` 均 200，`http://127.0.0.1:9042/healthz` 返回 `{"status":"alive"}`。仓库 `git status` 干净，容器未污染工作区。
+- 已建 `~/docker/python-animation` → 仓库 `docker/` 软链，恢复文档所述集中入口。
+- 按用户要求本轮未跑 `preview`／`demo`／`animation`，样片验收推迟；本机因此没有新的预览或成片产物，不能据此声称制作链已在新机器验收通过。
+- 文档中的测试机路径本次不可用：`~/.ssh/config` 缺失、本机 12000 CONNECT 端口未监听、`python-animation-tunnel` 用户服务不存在。历史记录里的 `qwer@172.25.233.189` 隧道与 `/home/jimmyhuang` 路径属旧开发机，本机未复现也未改写。
 
 ## 旧大写目录清理：2026-09-28
 
