@@ -1,0 +1,5 @@
+interface:
+  display_name: "IDE 分步教学视频"
+  short_description: "生成带中文讲解、逐字输入、精准光标与运行点击动画的 Python 教学视频"
+  default_prompt: "使用 $ide-lesson-video，按旁白与逐字输入同步开始、打完停顿 1 秒、点击运行并淡出的流程制作这段 Python 教学视频。"
+
