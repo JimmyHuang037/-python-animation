@@ -1,5 +1,41 @@
 # 需求更新与来源
 
+本文件按来源保留历史事实；当前全课范围见[课程 README](../../course/README.md)，具体样片范围与两组 req/status见小节入口，共用规则见根 [AGENTS](../../AGENTS.md)。旧条目中的“本机”“本轮”“未实施”只指当时机器和任务。
+
+## 2026-10-01 过时文档迁入 archive 与文件名统一
+
+来源：本任务用户明确要求“现在doc的project和product过时文件放入doc/archive，现有文件重命名为两个单词中间是-”。仓库实际目录为 `docs/project` 与 `docs/production`，按这两个目录执行：旧需求、旧进度、自审、范围比较及历史 Docker 验证移入 `docs/archive/`；来源更新继续放 `docs/project/context-updates.md`；仍有效的架构、工作流、视觉方法与 Windows 接入说明留在 `docs/production/`。本次统一上述目录及归档文件的名称，研究快照、课程细纲、固定入口和只读导入原件不改名。
+
+文件迁移与原路径对照见[归档索引](../archive/archive-index.md)。现行制作入口为 [course-architecture](../production/course-architecture.md)、[lesson-workflow](../production/lesson-workflow.md)、[visual-analysis](../production/visual-analysis.md)、[windows-access](../production/windows-access.md)，文件日期保留在正文或数据中。下方历史条目中的旧路径仅记录当时位置；导航与当前引用使用新位置。
+
+执行者：本任务 Codex；审查人：用户（审查未执行）。共用文件修改范围为归档与改名、根 AGENTS/README、文档导航、课程 README及受影响的研究引用；不改制作源码和成员 req/status。开始前已有的 `docs/project/status.md` 未解决 Git 索引及其他任务的改动保留，不暂存、提交或继续合并。
+
+技术验证通过：检查232处本地 Markdown 链接，无新增失效链接；目标三个目录的11个文件均符合双词连字符命名；旧需求与进度除链接目标外正文一致；归档 Docker JSON 的 SHA256 与迁移前一致。与任务开始前快照比较，制作源码、只读导入原件及其他非文档文件未变，Git 索引哈希与未解决合并的三个阶段对象一致。`git diff --check`、`git diff --cached --check` 通过。文档任务未运行容器或视频制作；用户审查、提交与合并未执行。
+
+## 2026-10-01 项目 skill统一放根目录
+
+来源：用户要求“skill要放在根目录下，和doc平级”，随后询问Windows侧AI能否读取、提出“强制不写入带.的目录”，并补充团队还有Claude Desktop成员。本轮将共同规则写入根AGENTS：项目技能唯一维护位置为 `skills/<skill-name>/SKILL.md`，完整辅助资源随目录保存，禁止为项目skill向隐藏目录写入、安装、复制或建立链接；规则适用于Codex、Qoder / Qoder CN、Claude Desktop。
+
+团队选择显式读取仓库技能，不为获取原生自动发现而复制到客户端默认隐藏目录。能读取文件、原生发现技能和具备WSL执行工具分别核实；成员机尚未实测，不宣称已自动接入。新增skills入口README并同步新人提示、样片下载步骤、文档导航和Windows接入说明；本轮未下载技能、安装客户端适配或更改成员环境。
+
+## 2026-10-01 简化课程制作文档入口
+
+来源：用户指出两组req/status已规划在course，本项目是课程视频制作，无需套用前后端、数据库开发规范；随后批注“现有docs/project的req/status承担全课共同要求和项目总览”，追问“你觉得不用改吗？”。本轮据此调整入口：全课范围与模块预算转入 `course/README.md`；旧 `docs/project/requirements.md`、`status.md` 保留完整历史正文并标为归档，不再维护第三套当前req/status。根README提供项目介绍、成员文档路径和已有产物入口，根AGENTS规定制作任务读取小节README与本组文档；docs按需保存制作方法、研究与历史。
+
+两组详细req/status仍由Soraya、余羿鸿及王旭辉创建与维护，项目负责人维护共同目标、架构和接口。必要纪律保留教学代码正确、画面与执行一致、声音字幕同步、制作复现和协作边界。每课细纲、导入原件、已有源码、另一任务的Windows AI接入说明及Git索引状态均保留。
+
+## 2026-10-01 两条制作线分别维护 req/status
+
+来源：用户明确“req两份，status两份，因为是两个需求”，并粘贴“列表”5分钟样片里程碑（开启，2026-10-01创建、2026-10-05截止）。范围为以vehicle贯穿的列表相加、相乘、append、extend、insert；Soraya与余羿鸿做前150秒动画，王旭辉做后150秒真实Python演示。动画采用一帧样例→满意后30秒→150秒的路径，样例不满意则按用户给出的image/网站范例路径调整；实操必备机械键盘打字声音，红圈与注释气泡为可选。
+
+用户随后明确由制作成员写自己的详细文档，用户本人的工作是架构规划，把分工与读取规则写入AGENTS，并要求README也写一份。当前共同里程碑与衔接入口为 `course/lessons/list-5min/README.md`；两组在各自 animation / python-demo 子目录创建 requirements和status，项目级文件保留共同需求和跨组总览。本轮只落实架构、入口与职责，不代写四份详细成员文档，不执行视频制作或远端派工。每课细纲继续暂缓修改。
+
+## 2026-10-01 四人文档一致性与细纲暂缓
+
+来源：本次用户要求审查全部 Markdown，使四位开发者均适用且不冲突；随后明确“每课细纲暂时不改，等用到再说”。本轮统一角色名称、文档优先级、任务证据与总览维护职责、个人环境和历史资料边界；不修改 `course/catalog.md`、附件内每课细纲或导入原件。任务卡与环境改造仍是草案，不因文档整理自动发布或部署。
+
+接续时根 AGENTS 已记录最新附件《Python课程大纲.docx》的模块汇总为当前依据，510 分钟；本轮将需求正文与其对齐，替代旧“精确总时长待定”、34课7+8分钟作为当前编排和“TXT 范围待定”的表述。附件模块包括文件与异常。新附件并非旧34课建议稿的确认；具体课次仍暂缓处理。原附件只读复制到 `references/imported/current-outline/`，保存来源与 SHA256，便于四人使用同版材料。
+
 ## 2026-09-29 本机 WSL 与 Docker Desktop
 
 来源：本任务用户要求将 python-animation 克隆到 WSL，并在 Docker Desktop 中看到 Motion Canvas 与 IDE 容器。本机工作目录为 `/home/yxsj98/python-animation`，使用 Ubuntu-24.04 与 Docker Desktop Linux 引擎；原 Windows 克隆保留。环境搭建完成后，用户要求将本次说明变更提交为 Gitee Pull Request；不包含视频制作。
@@ -39,7 +75,7 @@
 
 14份已有文件复制到本项目：旧大纲与脚本等5份、教学材料4份、参考截图5份。原件保留，逐文件SHA-256一致，完整清单见 [manifest](../../references/imported/manifest.json)。
 
-同步其他任务不等于采纳其所有助手结论，也不代表后台持续同步。未来用户改变需求时，修改 requirements 唯一正文并追加本记录。
+同步其他任务不等于采纳其所有助手结论，也不代表后台持续同步。未来用户改变需求时，按范围修改课程/小节 README或本组 requirements唯一正文，并追加本记录。
 
 ## 2026-09-15 当前补充研究任务
 用户由“不要参考research”改为允许参考已有research，并提供523995133主页、AE仓路径和第三段列表MP4；明确对标不限林粒粒。随后强调在WSL2干活，少进Windows。本任务只做研究，未扩张课程范围、冻结工具或改变时长。

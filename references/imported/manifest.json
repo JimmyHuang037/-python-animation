@@ -1,5 +1,5 @@
 {
-  "date": "2026-09-19",
+  "date": "2026-10-01",
   "files": [
     {
       "source": "/mnt/c/Users/JimmyHuang/Documents/Codex/2026-09-15/files-pasted-by-the-user-python/outputs/README.txt",
@@ -115,6 +115,15 @@
       "bytes": 3065332,
       "status": "copied-verified",
       "content_status": "source-material"
+    },
+    {
+      "source": "/home/jimmyhuang/.codex-wsl/attachments/a706d6a5-6887-4396-88e0-023064899046/Python课程大纲.docx",
+      "local": "references/imported/current-outline/Python课程大纲.docx",
+      "sha256": "d489a96838d3c3a4c35b9bca7eb3d274e4af03ec04d833669a54c4298d4c80fd",
+      "bytes": 24636,
+      "status": "copied-verified",
+      "content_status": "current-module-outline-only",
+      "imported_on": "2026-10-01"
     }
   ]
 }
