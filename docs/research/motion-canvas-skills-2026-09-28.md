@@ -1,5 +1,7 @@
 # Motion Canvas 技能与高星实践核验
 
+> 文档性质：按下述日期保留的历史研究、证据或提案，不是当前开发指令。四位开发者及各自 AI 执行时，以[根 AGENTS](../../AGENTS.md)、[课程范围](../../course/README.md)和[四人工作流](team-workflow-2026-10-01.md)为准；旧建议不覆盖当前约束。
+
 检索日期：2026-09-28。通过 GitHub REST API 实时读取星数，快照见 motion-canvas-github-2026-09-28.json。当前 GitHub 插件没有暴露可调用能力，使用 GitHub 公开 API、原始文件和网页检索。
 
 | 来源 | Stars | 类型与结论 |

@@ -1,12 +1,13 @@
 """Validate three lesson stages in the IDE container and measure cached Ali narration."""
 import hashlib
 import json
+import os
 import subprocess
 import wave
 from pathlib import Path
 
 ROOT = Path('/workspace')
-OUT = ROOT / 'build/docker/list-concat-demo/v2'
+OUT = Path(os.environ.get('CONCAT_OUTPUT_DIR', ROOT / 'build/docker/list-concat-demo/v2')).resolve()
 WS = OUT / 'workspace'
 WS.mkdir(parents=True, exist_ok=True)
 settings = json.loads((ROOT / 'studio/list-demo/editor-settings.json').read_text())
@@ -35,7 +36,7 @@ for i, parts in enumerate(sources):
     result = subprocess.run(['python3', str(WS / filename)], capture_output=True, text=True, check=True)
     want = expected[i]
     assert result.stdout == want, (filename, result.stdout)
-    audio = OUT.parent / 'audio' / f'{i+1:02}.audio'
+    audio = Path(os.environ.get('CONCAT_AUDIO_DIR', OUT.parent / 'audio')) / f'{i+1:02}.audio'
     with wave.open(str(audio)) as wav:
         duration = wav.getnframes() / wav.getframerate()
     speech_start = boundaries[i] + 0.25
@@ -51,7 +52,5 @@ for i, parts in enumerate(sources):
 plan = dict(duration=30, width=1920, height=1080, fps=30, voice='Ethan',
             provider='Alibaba Cloud Bailian', workspace=str(WS), stages=records)
 (OUT / 'timeline.json').write_text(json.dumps(plan, ensure_ascii=False, indent=2))
-# Repair the corrupted scratch example left by the abandoned typing attempt.
-(OUT.parent / 'workspace/vehicle.py').write_text('\n'.join(lines) + '\n')
 print(json.dumps([dict(stage=r['index'], speech=[r['speech_start'], r['speech_end']],
                        demonstrate=r['demo_start'], end=r['end']) for r in records], ensure_ascii=False))

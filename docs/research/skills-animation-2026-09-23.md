@@ -1,5 +1,9 @@
 # Python教学动画技能筛选
 
+> 文档性质：按下述日期保留的历史研究、证据或提案，不是当前开发指令。四位开发者及各自 AI 执行时，以[根 AGENTS](../../AGENTS.md)、[课程范围](../../course/README.md)和[四人工作流](team-workflow-2026-10-01.md)为准；旧建议不覆盖当前约束。
+>
+> 当前课程动画采用 Motion Canvas；下文 Remotion 优先及引擎候选排序属于旧选型建议。技能安装与实现状态以当前进度和工程为准。
+
 日期：2026-09-23。本轮研究，未安装技能、未渲染视频。
 
 用户参考：https://www.bilibili.com/video/BV1Jgf6YvE8e/?p=18

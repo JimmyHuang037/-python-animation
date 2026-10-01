@@ -1,6 +1,28 @@
-# 当前状态
+# 项目进度历史记录
 
-更新时间：2026-09-29。
+> 2026-10-01 归档：本文件不再维护当前需求或进度，不是成员日常必读入口。
+> 全课范围见[课程 README](../../course/README.md)，当前样片与两组成员文档见[“列表”5分钟样片](../../course/lessons/list-5min/README.md)，共同规则见根[AGENTS](../../AGENTS.md)。
+> 以下完整保留归档前正文；其中“当前”“总览”“更新职责”、个人环境及授权仅描述当时任务，不覆盖上述现行入口。
+
+## 归档前“当前状态”正文
+
+更新时间：2026-10-01。总览由项目负责人汇总，各执行者维护任务证据；明确授权的文档整理任务可直接更新。适用规则见根 [AGENTS](../../AGENTS.md)。
+
+## 当前总览
+
+- 当前课程依据：[附件模块汇总](../../references/imported/current-outline/Python课程大纲.docx)，510 分钟（8.5 小时）；每课细纲暂不改，使用时再处理。旧34课及逐课时长不作为当前编排依据。
+- 四人协作：项目负责人兼 DevOps、Canvas A、Canvas B、IDE 制作者，各自 WSL2 + Docker，可用不同 AI。共用规则与交接见[工作流](../research/team-workflow-2026-10-01.md)和[任务模板](../research/task-template-2026-10-01.md)。
+- 当前里程碑：[“列表”5分钟样片](../../course/lessons/list-5min/README.md)。本聊天已建立共同 README和根 AGENTS读取入口；动画与真实 Python 演示分别由成员创建本组 req/status，当前四份文件尚未建立，实际制作进度等待成员证据。项目总览只汇总跨组结果和入口。
+- 已有交付：30秒宣传动画及约40秒五行IDE样片有历史制作/技术验证记录；不是正式课程完成，也不代表四台电脑均已复现或真人审片通过。
+- 文档一致性审查记录：当次审查37份 Markdown，统一优先级、角色、任务类型验收和历史/本机配置边界；保留每课细纲与导入原件。当前大纲新增仓库只读副本并核对 SHA256，检查结果如下；此次随后新增的样片架构 README不计入当次37份。
+- 尚待实施：环境隔离参数改造、团队镜像与共享产物位置、远端任务发布、实际第二台机器制作复现、完整正式课成片；本轮未执行这些工作。
+- 工作区限制：开始前 `status.md` 的 Git 索引已有未解决合并项，工作区正文已包含双方机器记录且无冲突标记；本轮保留这些记录，只修改文档正文，不暂存或继续合并。录制脚本已有另一任务的修改，本轮不覆盖。
+
+2026-10-01 文档一致性审查验证：`git diff --check` 与 `git diff --cached --check` 通过；当次37份 Markdown 的 UTF-8、控制字符、围栏及正文冲突标记检查通过；当次当前项目链接可解析。导入旧 AGENTS 的5处来源相对链接按原件保留，读取边界见[导入索引](../../references/imported/README.md)。8份细纲/分镜/来源 Markdown 与开始前 SHA256 一致；当前大纲副本与原附件逐字节一致。Git 索引仍未解决的状态不因这些正文检查而变成已解决。
+
+## 历史记录的读取边界
+
+以下保存 2026-09-15 至 2026-09-29 各任务的原记录。“本机”“本轮”“未实施”仅指当时机器、任务与阶段，后续记录可覆盖早先状态；不是四位成员当前环境的统一声明。旧选型、课程建议和授权以当前需求与最新用户决定为准。
 
 ## 本机 Docker 工作台搭建：2026-09-29
 
@@ -13,6 +35,15 @@
 - 已建 `~/docker/python-animation` → 仓库 `docker/` 软链，恢复文档所述集中入口。
 - 按用户要求本轮未跑 `preview`／`demo`／`animation`，样片验收推迟；本机因此没有新的预览或成片产物，不能据此声称制作链已在新机器验收通过。
 - 文档中的测试机路径本次不可用：`~/.ssh/config` 缺失、本机 12000 CONNECT 端口未监听、`python-animation-tunnel` 用户服务不存在。历史记录里的 `qwer@172.25.233.189` 隧道与 `/home/jimmyhuang` 路径属旧开发机，本机未复现也未改写。
+
+## Ubuntu-24.04 与 Docker Desktop：2026-09-29
+
+- 从 Gitee HTTPS 克隆到 `/home/yxsj98/python-animation`，克隆时提交为 `9acc9ab`；原 Windows 克隆保留。
+- 已启用 Docker Desktop 的 Ubuntu-24.04 WSL 集成；在 WSL 构建并启动 Compose 项目 `python-animation`，`python-animation-motion-1` 与 `python-animation-ide-1` 均 healthy，Windows Docker CLI 也能列出。
+- 两容器均挂载本机 WSL 仓库到 `/workspace`。入口：Motion Canvas `http://127.0.0.1:9030/`，IDE `http://127.0.0.1:9042/?folder=/workspace`；Python 为 3.12.14。
+- Playwright 实际加载验证：Motion Canvas 显示 30 秒 promo 时间轴和编辑器，IDE 显示完整仓库目录；两页 HTTP 200，最终加载无 JavaScript 异常。Canvas 初次依赖预处理期间出现一次空白页，重新加载后恢复，无需修改应用源码。
+- 从新 WSL 终端运行 `cd ~/python-animation && ./docker/course status` 查看；旧终端尚未刷新 docker 组时，可使用 `sg docker -c './docker/course status'`。配置为 `restart: unless-stopped`，Docker 引擎启动后自动恢复未手动停止的服务。
+- 本次只验证环境与页面，未运行视频渲染或录制；环境搭建完成后，用户要求通过 Gitee Pull Request 同步本次说明变更。
 
 ## 旧大写目录清理：2026-09-28
 
@@ -34,7 +65,7 @@
 - 本机完整 IDE 样片约 40.43 秒，核对真实保存源码与终端输出 `['键盘']`；测试机按用户要求只交付 10 秒 IDE 预览和 10 秒／300 帧动画，均为 1080p，完整解码通过。前 10 秒 IDE 预览尚未到运行代码镜头，不能称其包含终端输出验收；独立源码执行结果另记。
 - 修复浏览器硬编码路径、容器内服务地址、监听范围、共享工作区与声音路径；同时修复 Vite 服务名白名单、文件搜索等待和隐藏终端误匹配。
 - WSL 原生 SSH 通过本机既有 12000 CONNECT 端口连测试机；用户级 systemd 隧道暴露本机 19030／19042。底层 mirrored 网络没有到 Default Switch 的直连路由，转接依赖该端口可用。
-- [启动说明](../../docker/README.md)、[验证记录](../production/docker-verification-2026-09-28.json)。测试输出在 `build/docker/`，不覆盖既有定稿视频；镜像、会话和测试输出不提交 Git。未做真人连续听审。
+- [启动说明](../../docker/README.md)、[验证记录](docker-verification.json)。测试输出在 `build/docker/`，不覆盖既有定稿视频；镜像、会话和测试输出不提交 Git。未做真人连续听审。
 
 
 ## 五行列表实操云希样片：2026-09-28
@@ -123,7 +154,7 @@
 
 - 已按用户要求更新requirements：保留Matplotlib；排除正则爬虫、词频词云、CSV统计专题和独立综合答题模块。
 - 已导入111页复习PPT并核对哈希，提取逐页原生文字；重新核对第15讲Pandas范围。图片代码未全量转录，未开展成片制作。
-- 新增[共同范围比较](scope-comparison-2026-09-19.md)；其模块预算已进一步拆成上述34课大纲建议，尚未冻结。
+- 新增[共同范围比较](scope-comparison.md)；其模块预算已进一步拆成上述34课大纲建议，尚未冻结。
 - Pandas基础、TXT与Tkinter如何交付仍是差异项；没有把排除CSV统计解释成用户删除全部Pandas或文件读写。
 
 ## 已完成
@@ -151,7 +182,7 @@
 
 ## 本轮交付范围
 
-本次新增 Motion Canvas 宣传动画工程与实际 30 秒成片；尚非完整课程生成系统。早期范围为研究、需求记忆、目录与文档、既有材料导入。自审与文件检查结果见 [review](review-2026-09-15.md)。
+本次新增 Motion Canvas 宣传动画工程与实际 30 秒成片；尚非完整课程生成系统。早期范围为研究、需求记忆、目录与文档、既有材料导入。自审与文件检查结果见 [review](project-review.md)。
 
 ## 补充研究：2026-09-15
 新增英美欧课程与创作者对标、版权核查、动画技术及三段MP4观察，入口：[补充报告](../research/benchmark-supplement-2026-09-15.md)。新增36张采样帧、4张联系表、媒体哈希与Firecrawl摘存。林粒粒动画软件仍未查实；本轮未开发或生成课程成片。
