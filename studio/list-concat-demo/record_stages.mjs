@@ -1,16 +1,61 @@
-import pkg from '../promo30/node_modules/playwright/index.js';
-const {chromium}=pkg;
-import {mkdir,rm,writeFile} from 'node:fs/promises';
-const out='/workspace/build/docker/list-concat-demo', ws=`${out}/workspace`;
-await mkdir(`${out}/raw-stages`,{recursive:true}); await rm(`${ws}/vehicle-result.txt`,{force:true});
-const browser=await chromium.launch({headless:true,args:['--no-sandbox']}); const ctx=await browser.newContext({viewport:{width:1920,height:960},recordVideo:{dir:`${out}/raw-stages`,size:{width:1920,height:960}}}); const page=await ctx.newPage();
-const sleep=ms=>page.waitForTimeout(ms);
-await page.goto(`http://ide:9042/?folder=${ws}`); await page.locator('.monaco-workbench').waitFor(); await sleep(1600);
-if(await page.locator('.part.sidebar').isVisible()) await page.keyboard.press('Control+b');
-await page.keyboard.press('F1'); let q=page.locator('.quick-input-widget input'); await q.waitFor({state:'visible'}); await q.fill('>Terminal: Create New Terminal'); await page.locator('.quick-input-list .monaco-list-row').filter({hasText:'Terminal: Create New Terminal'}).first().click(); await q.waitFor({state:'hidden'}); await sleep(700);
-async function open(name){await page.keyboard.press('Control+p');await q.waitFor({state:'visible'});await q.fill(name);await page.locator('.quick-input-list .monaco-list-row').filter({hasText:name}).first().click();await q.waitFor({state:'hidden'});await sleep(500);}
-async function run(name){const t=page.locator('.xterm:visible').first();await t.click();await page.keyboard.type(`python3 ${name} | tee vehicle-result.txt`,{delay:15});await page.keyboard.press('Enter');await sleep(1000);}
-await open('stage1.py'); await sleep(4500); await run('stage1.py'); await page.screenshot({path:`${out}/stage1-result.png`});
-await sleep(4500); await open('stage2.py'); await sleep(4500); await run('stage2.py'); await page.screenshot({path:`${out}/stage2-result.png`});
-await sleep(4500); await open('stage3.py'); await sleep(4500); await run('stage3.py'); await page.screenshot({path:`${out}/stage3-result.png`});
-await sleep(5000); const v=page.video(); await ctx.close(); await v.saveAs(`${out}/recording-stages.webm`); await browser.close(); console.log('stages_recorded');
+import {chromium} from '../list-demo/node_modules/playwright/index.mjs';
+import {mkdir, readFile, writeFile} from 'node:fs/promises';
+import path from 'node:path';
+import {outputDir as out, ideUrl, checkSaved, executeChecked} from './recording-utils.mjs';
+
+const plan = JSON.parse(await readFile(path.join(out, 'timeline.json'), 'utf8'));
+const workspace = plan.workspace;
+await mkdir(path.join(out, 'raw-stages'), {recursive: true});
+const browser = await chromium.launch({headless: true, args: ['--no-sandbox']});
+const context = await browser.newContext({viewport: {width: 1920, height: 960},
+  recordVideo: {dir: path.join(out, 'raw-stages'), size: {width: 1920, height: 960}}});
+const page = await context.newPage();
+const stages = [];
+async function command(text) {
+  await page.keyboard.press('F1');
+  const input = page.locator('.quick-input-widget input');
+  await input.waitFor({state: 'visible'});
+  await input.fill('>' + text);
+  await page.locator('.quick-input-list .monaco-list-row').filter({hasText: text}).first().click();
+  await input.waitFor({state: 'hidden'});
+}
+async function open(name) {
+  await page.keyboard.press('Control+p');
+  const input = page.locator('.quick-input-widget input');
+  await input.waitFor({state: 'visible'});
+  await input.fill(name);
+  await page.locator('.quick-input-list .monaco-list-row').filter({hasText: name}).first().click();
+  await input.waitFor({state: 'hidden'});
+  await page.locator('.monaco-editor:visible').first().waitFor();
+}
+try {
+  await page.goto(ideUrl(workspace));
+  await page.locator('.monaco-workbench').waitFor();
+  await page.waitForTimeout(1600);
+  if (await page.locator('.part.sidebar').isVisible()) await page.keyboard.press('Control+b');
+  await command('Terminal: Kill All Terminals');
+  await command('Terminal: Create New Terminal');
+  await page.locator('.xterm:visible').first().waitFor();
+  const start = performance.now();
+  const now = () => (performance.now() - start) / 1000;
+  const until = async time => page.waitForTimeout(Math.max(0, (time - now()) * 1000));
+  for (const stage of plan.stages) {
+    await until(stage.start);
+    await open(stage.file);
+    await checkSaved(page, path.join(workspace, stage.file), stage.source);
+    await until(stage.demo_start);
+    const executed_at = now();
+    const execution = await executeChecked(page, workspace, stage.file, stage.expected_stdout);
+    stages.push({index: stage.index, source: stage.source, executed_at, finished_at: now(), ...execution});
+    await page.screenshot({path: path.join(out, `stage${stage.index}-result.png`)});
+    await until(stage.end);
+  }
+  await writeFile(path.join(out, 'stages-events.json'), JSON.stringify({workspace, stages}, null, 2));
+  const video = page.video();
+  await context.close();
+  await video.saveAs(path.join(out, 'recording-stages.webm'));
+  console.log('stages_recorded');
+} catch (error) {
+  await page.screenshot({path: path.join(out, 'stages-failure.png')}).catch(() => {});
+  throw error;
+} finally {await browser.close();}

@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {spawn} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+import {outputDir, expectedFirst, expectedFinal} from '../recording-utils.mjs';
+const child = spawn('node', [fileURLToPath(new URL('../record.mjs', import.meta.url))], {stdio: 'inherit'});
+const code = await new Promise(resolve => child.once('exit', resolve));
+assert.equal(code, 0, 'Full typing recording failed');
+const events = JSON.parse(await readFile(`${outputDir}/events.json`));
+const executions = events.events.filter(event => event.execution).map(event => event.execution);
+assert.deepEqual(executions.map(result => result.exit_code), [0, 0]);
+assert.deepEqual(executions.map(result => result.stdout), [expectedFirst, expectedFinal]);
+const source = await readFile(new URL('../lesson.py', import.meta.url), 'utf8');
+assert.equal((await readFile(`${outputDir}/workspace/vehicle.py`, 'utf8')).trimEnd(), source.trimEnd());
+console.log('FULL_TYPING_AND_REAL_OUTPUT_VERIFIED');

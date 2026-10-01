@@ -1,10 +1,11 @@
 import {chromium} from '../list-demo/node_modules/playwright/index.mjs';
 import {readFile, writeFile, mkdir, rm} from 'node:fs/promises';
 import path from 'node:path';
+import {outputDir, prepareWorkspace, focusEnd, executeChecked} from './recording-utils.mjs';
 
 const root = '/workspace';
-const out = path.join(root, 'build/docker/list-concat-demo');
-const ideWorkspace = path.join(root, 'build/docker/list-demo/workspace');
+const out = outputDir;
+const ideWorkspace = path.join(out, 'workspace');
 const source = (await readFile(path.join(root, 'studio/list-concat-demo/lesson.py'), 'utf8')).trimEnd().split('\n');
 const file = path.join(ideWorkspace, 'vehicle.py');
 const result = path.join(ideWorkspace, 'vehicle-result.txt');
@@ -12,6 +13,7 @@ const expectedFirst = "['train', 'bus', 'car', 'ship'] ['subway', 'bicycle']\n['
 const expectedFinal = expectedFirst + "['train', 'bus', 'car', 'ship', 'subway', 'bicycle', 'bike']\n";
 await mkdir(out, {recursive: true});
 await mkdir(path.join(out, 'raw'), {recursive: true});
+await prepareWorkspace(ideWorkspace);
 await writeFile(file, '');
 await rm(result, {force: true});
 
@@ -43,15 +45,7 @@ async function typeLine(line, enter = true) {
   await page.keyboard.press('Control+s');
 }
 async function execute(expected) {
-  await rm(result, {force: true});
-  await page.locator('.xterm:visible').first().click();
-  await page.keyboard.type('python3 vehicle.py | tee vehicle-result.txt', {delay: 12});
-  await page.keyboard.press('Enter');
-  for (let i = 0; i < 80; i++) {
-    if (await readFile(result, 'utf8').catch(() => '') === expected) return;
-    await sleep(100);
-  }
-  throw new Error('Real terminal output did not match expected value');
+  return executeChecked(page, ideWorkspace, 'vehicle.py', expected);
 }
 async function checkSaved(expected) {
   for (let i = 0; i < 30; i++) {
@@ -83,13 +77,7 @@ try {
   await page.keyboard.press('Enter');
   await page.keyboard.press('Control+j');
   await sleep(400);
-  const editor = page.locator('.monaco-editor').first();
-  const editorInput = editor.locator('textarea.ime-text-area');
-  await editorInput.evaluate(el => el.focus());
-  const editorBox = await editor.boundingBox();
-  if (!editorBox) throw new Error('Editor not visible');
-  await page.mouse.click(editorBox.x + 400, editorBox.y + 100);
-  await editorInput.evaluate(el => el.focus());
+  await focusEnd(page);
   await page.keyboard.press('Control+a');
   await page.keyboard.press('Backspace');
   await page.keyboard.press('Control+s');
@@ -101,25 +89,26 @@ try {
   await mark('intro');
   await until(2.5);
   await mark('create');
+  await focusEnd(page);
   for (const line of source.slice(0, 2)) await typeLine(line);
   await until(9);
   await mark('concat');
+  await focusEnd(page);
   for (const line of source.slice(2, 5)) await typeLine(line);
   const firstSource = source.slice(0, 5).join('\n') + '\n';
   await checkSaved(firstSource);
   await until(17);
   await mark('first_run');
-  await execute(expectedFirst);
+  events.at(-1).execution = await execute(expectedFirst);
   await page.screenshot({path: path.join(out, 'first-run.png')});
   await until(21);
   await mark('augmented');
-  await page.mouse.click(editorBox.x + 400, editorBox.y + 160);
-  await page.keyboard.press('Control+End');
+  await focusEnd(page);
   for (const line of source.slice(5)) await typeLine(line);
   await checkSaved(source.join('\n'));
   await until(26);
   await mark('final_run');
-  await execute(expectedFinal);
+  events.at(-1).execution = await execute(expectedFinal);
   await page.screenshot({path: path.join(out, 'final-run.png')});
   await until(30);
   await writeFile(path.join(out, 'events.json'), JSON.stringify({events, expectedFirst, expectedFinal, actualFinal: await readFile(result, 'utf8'), source: source.join('\n') + '\n'}, null, 2));

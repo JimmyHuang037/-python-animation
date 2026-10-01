@@ -1,5 +1,7 @@
 # Manim技能审查及两项技能下载
 
+> 文档性质：按下述日期保留的历史研究、证据或提案，不是当前开发指令。四位开发者及各自 AI 执行时，以[根 AGENTS](../../AGENTS.md)、[课程范围](../../course/README.md)和[四人工作流](team-workflow-2026-10-01.md)为准；旧建议不覆盖当前约束。
+
 日期：2026-09-23。用户要求仔细核查manim-video来源，并下载Remotion与Frontend Design技能。
 
 ## 来源和时间证据

@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {spawn} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+const recorder = fileURLToPath(new URL('../record_stages.mjs', import.meta.url));
+const child = spawn('node', [recorder], {stdio: 'inherit'});
+const code = await new Promise(resolve => child.once('exit', resolve));
+assert.equal(code, 0, 'Stage recording must open and execute the prepared stage files');
+const out = process.env.CONCAT_OUTPUT_DIR || '/workspace/build/docker/list-concat-demo/v2';
+const events = JSON.parse(await readFile(`${out}/stages-events.json`));
+assert.deepEqual(events.stages.map(stage => stage.exit_code), [0, 0, 0]);
+assert.equal(events.stages.length, 3);
+console.log('PREPARED_STAGE_RECORDING_VERIFIED');
