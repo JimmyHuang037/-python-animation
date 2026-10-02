@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-02",
+  "branch": "lesson06-video",
+  "input_commit": "27f867a970963af5da85e66e2c46af556f057702",
+  "main_commit": "58bef500bcafa164501394964103e642e3e4680f",
+  "source": "studio/promo40/src/promo.tsx",
+  "source_sha256": "3a6583042f1363c9a5cf2f60920d1cfa11b051f1766919aacbb805cb3cb17267",
+  "video": "build/promo40/promo40.mp4",
+  "video_sha256": "815cc2e27fc01f00debde314535eeeefc717ba64102939bf0d4b0bdbc6647d92",
+  "bytes": 156556,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "frames": 150,
+  "duration": 5.0,
+  "audio": false,
+  "render_result": 0,
+  "decode_ok": true,
+  "typecheck_promo30": true,
+  "typecheck_promo40": true,
+  "editor_browser_check": {
+    "passed": true,
+    "page_errors": [],
+    "canvas_count": 3
+  },
+  "render_environment": {
+    "mode": "container",
+    "container_name": "python-animation-motion-1",
+    "hostname": "52cd2f7605f5",
+    "image": "python-animation-studio:local",
+    "node": "v24.13.0",
+    "chromium": "/ms-playwright/chromium-1208/chrome-linux64/chrome",
+    "dependency_install": "npm ci --ignore-scripts --no-audit --no-fund",
+    "docker_env_present": true,
+    "container_id": "52cd2f7605f5335a6066c4b0380e824ee528a1d54fb2fcb3a47d6cf5418d8067",
+    "image_id": "sha256:942ca1de62105a2547fe7489ffe0680c0769fe9274f87235ebf4191384350e72"
+  },
+  "docker_execution": "passed",
+  "new_docker_services": false,
+  "image_rebuilt": false,
+  "visual_check": {
+    "by": "Codex",
+    "frames": [
+      30,
+      149
+    ],
+    "list_items_visible_at_end": [
+      "牛奶",
+      "鸡蛋",
+      "咖啡豆"
+    ],
+    "add_button_visible": true,
+    "closing_visible": true,
+    "text_within_canvas": true
+  },
+  "continuous_human_review": false,
+  "remote_pr_updated": false,
+  "docker_files_restored": [
+    ".dockerignore",
+    "docker/Dockerfile.studio",
+    "docker/studio-entrypoint.sh",
+    "docker/compose.yaml",
+    "docker/course",
+    "docker/run-job.py",
+    "docker/README.md"
+  ],
+  "promo30_source_matches_main": true,
+  "removed_unused_dockerfiles": [
+    "docker/Dockerfile.ide.original",
+    "docker/Dockerfile.ide.runtime"
+  ],
+  "git_diff_check": true
+}

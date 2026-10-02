@@ -37,6 +37,7 @@
 - **课程资料：**[导入索引](references/imported/README.md)列出历史大纲、课件、试题和参考截图；原件保留作依据，不代表当前课程定稿。
 - **当前大纲：**[附件只读副本](references/imported/current-outline/Python课程大纲.docx)的模块汇总表；[旧每课细纲建议稿](course/catalog.md)暂不改，等实际使用再处理，不据此冻结34课或逐课分钟。
 - **动画样片：**[Motion Canvas 源工程](studio/promo30/README.md)及 30 秒宣传片版本：[无配音](build/promo30/python-course-promo-30s.mp4)、[云希男声](build/promo30/python-course-promo-30s-tts-male.mp4)、[Qwen Ethan](build/promo30/python-course-promo-30s-qwen-ethan.mp4)。它们是宣传样片，不是正式课程。
+- **购物清单欢迎动画：**[promo40 独立工程](studio/promo40/README.md)，当前为5秒动画；由 PR #3 的新场景迁出，不覆盖30秒宣传片。
 - **代码实操样片：**[列表五行代码 IDE 演示](build/list-demo/shopping-list-yunxi.mp4)，对应[制作工程](studio/list-demo/README.md)；实际输入、保存并运行 Python。
 - **制作环境：**[Linux Docker 工作台](docker/README.md)包含 Motion Canvas、真实 Python IDE 与录制流程。
 

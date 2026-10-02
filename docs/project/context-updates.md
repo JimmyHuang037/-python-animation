@@ -2,6 +2,20 @@
 
 本文件按来源保留历史事实；当前全课范围见[课程 README](../../course/README.md)，具体样片范围与两组 req/status见小节入口，共用规则见根 [AGENTS](../../AGENTS.md)。旧条目中的“本机”“本轮”“未实施”只指当时机器和任务。
 
+## 2026-10-02 PR #3 动画拆分与修复
+
+来源：本聊天用户要求拉取 `lesson06-video` 分支，把新的动画及计时代码挪入新建文件夹 `promo40` 并处理错误。新场景与必要的Motion Canvas配置移到 `studio/promo40`；`studio/promo30/src/promo.tsx` 恢复为本次读取的 `main`（`58bef50`）版本。promo40当前保持原新场景的5秒时长，名称不表示扩展为40秒，不替代“列表”5分钟样片范围。
+
+执行者：本任务Codex；审查人：用户（真人审片未执行）。本次共用文件范围为根README、忽略配置、Docker制作入口和本来源记录；修复计时信号、列表行坐标及文字越界，配置独立渲染端口、输出目录与可复现入口。技术验证与产物见 `build/promo40/verification.json`；Docker运行、跨机复现和远端合并分别核实，不由本机原生验证替代。PR原有音频与视频保留，本轮未重新请求TTS。
+
+随后用户要求移除PR新增的 `docker/Dockerfile.ide.original` 和 `docker/Dockerfile.ide.runtime`，再审查promo40是否需要修改Dockerfile。本轮已删除这两个未被Compose引用的文件；原 `Dockerfile.ide` 保留。审查确认promo40与promo30的依赖、锁定版本完全相同（锁文件仅工程名称不同），无需为新动画增加镜像依赖。用户同意撤回重复安装及新增服务，并要求修正错误文件、进入现有容器跑5秒视频验证。
+
+最终撤回本任务对 `.dockerignore`、`docker/Dockerfile.studio`、`docker/studio-entrypoint.sh`、`docker/compose.yaml`、`docker/course`、`docker/run-job.py` 和 `docker/README.md` 的额外改动；上述文件恢复为本分支原版本。promo40文档改为在现有motion容器内准备项目依赖、启动独立Vite进程并渲染，不新增镜像或制作服务。保留动画修复、promo30恢复和原PR两份无用Dockerfile的删除；未提交、未推送。
+
+按用户“进container跑”的要求，恢复当时失效的Docker Desktop WSL挂载代理，用原镜像重新创建现有motion服务，保留宿主29030端口和原依赖卷。实际在 `python-animation-motion-1`（`python-animation-studio:local`）内完成TypeScript、浏览器编辑器、150帧渲染、1920×1080/30fps/5秒编码及完整解码验证；没有重建镜像。第30和149帧检查通过，真人连续审片及跨机复现未执行。成片和验证记录位于 `build/promo40/`。
+
+容器验证完成后，用户再次明确要求“push”，授权提交并推送本轮修复；目标为现有Gitee主仓库 `origin` 的 `lesson06-video` 分支。PR #3来源是成员fork，主仓库分支推送与原PR源分支的更新分别核实，不将推送主仓库分支表述为原PR已更新或已合并。
+
 ## 2026-10-01 过时文档迁入 archive 与文件名统一
 
 来源：本任务用户明确要求“现在doc的project和product过时文件放入doc/archive，现有文件重命名为两个单词中间是-”。仓库实际目录为 `docs/project` 与 `docs/production`，按这两个目录执行：旧需求、旧进度、自审、范围比较及历史 Docker 验证移入 `docs/archive/`；来源更新继续放 `docs/project/context-updates.md`；仍有效的架构、工作流、视觉方法与 Windows 接入说明留在 `docs/production/`。本次统一上述目录及归档文件的名称，研究快照、课程细纲、固定入口和只读导入原件不改名。
