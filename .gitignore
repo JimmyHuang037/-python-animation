@@ -29,3 +29,6 @@ local-runtime/
 # Docker 验证输出与独立 IDE 会话；不覆盖已定稿样片。
 /build/docker/
 /docker/.cache/
+
+# promo40 的逐帧渲染中间产物；成片和验证记录可版本管理。
+/build/promo40/frames/
