@@ -2,11 +2,13 @@
 import math
 import os
 from pathlib import Path
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 WIDTH, HEIGHT = 1920, 1080
-CODE_FONT_PATH = os.environ.get('IDE_VIDEO_CODE_FONT', 'C:/Windows/Fonts/consola.ttf')
-UI_FONT_PATH = os.environ.get('IDE_VIDEO_UI_FONT', 'C:/Windows/Fonts/msyh.ttc')
+CODE_FONT_PATH = os.environ.get('IDE_VIDEO_CODE_FONT')
+UI_FONT_PATH = os.environ.get('IDE_VIDEO_UI_FONT')
+if not CODE_FONT_PATH or not UI_FONT_PATH:
+    raise EnvironmentError('Set IDE_VIDEO_CODE_FONT and IDE_VIDEO_UI_FONT to valid font paths; the renderer does not auto-fallback.')
 for candidate in (CODE_FONT_PATH, UI_FONT_PATH):
     if not Path(candidate).is_file():
         raise FileNotFoundError('Set IDE_VIDEO_CODE_FONT and IDE_VIDEO_UI_FONT to valid font paths; missing: ' + candidate)
@@ -58,6 +60,9 @@ COLORS = {
     'dot_yellow': oklch(.70, .17, 80),
     'dot_green': oklch(.60, .18, 145),
     'active': oklch(.195, .017, 240),
+    'callout_red': (231, 58, 72),
+    'callout_fill_start': oklch(.38, .08, 195),
+    'callout_fill': oklch(.18, .035, 195),
 }
 EDITOR_RECT = (180, 140, 1740, 652)
 RUN_BUTTON_RECT = (1586, 156, 1712, 199)
@@ -163,7 +168,132 @@ def caret_position(state):
             CODE_Y + state['row'] * LINE_HEIGHT)
 
 
-def render_frame(stage, state, output_stage, caret_on, stages):
+def _wrap_annotation(text, max_chars=18):
+    import textwrap
+    return textwrap.wrap(str(text), width=max_chars, break_long_words=True,
+                         break_on_hyphens=False) or ['']
+
+
+def _mix_color(start, end, progress):
+    progress = max(0.0, min(1.0, progress))
+    return tuple(round(a + (b - a) * progress) for a, b in zip(start, end))
+
+
+def _ease_in(progress):
+    """Approximate Claude's cubic-bezier(.22,.61,.36,1) entrance curve."""
+    progress = max(0.0, min(1.0, progress))
+    return 1.0 - (1.0 - progress) ** 3
+
+
+def _ease_out(progress):
+    """Approximate Claude's cubic-bezier(.55,.06,.68,.19) exit curve."""
+    progress = max(0.0, min(1.0, progress))
+    return progress ** 1.7
+
+
+def _draw_annotations(canvas, stage_index, state, stages, frame=None):
+    """Draw close-to-code bubbles and red ellipses declared by the lesson."""
+    if stage_index >= len(stages):
+        return
+    annotations = stages[stage_index].get('annotations', [])
+    if not annotations:
+        return
+    stage_info = stages[stage_index]
+    circle_frame = stage_info.get('circle_frame', stage_info.get('typing_end_frame', -1))
+    bubble_frame = stage_info.get('bubble_frame', circle_frame + 3)
+    bubble_end_frame = stage_info.get('bubble_end_frame', bubble_frame + 6)
+    bubble_exit_frame = stage_info.get('bubble_exit_frame', 10**9)
+    bubble_exit_end_frame = stage_info.get('bubble_exit_end_frame', bubble_exit_frame + 36)
+    if frame is not None and frame < circle_frame:
+        return
+    d = ImageDraw.Draw(canvas)
+    bubble_x, bubble_right = 1110, 1715
+    occupied = []
+    for annotation in annotations:
+        highlight = annotation.get('highlight')
+        row = int(annotation.get('row', highlight.get('row', 0) if isinstance(highlight, dict) else 0))
+        if row >= len(state['lines']):
+            continue
+        line = state['lines'][row]
+        target_y0 = CODE_Y + row * LINE_HEIGHT - 11
+        target_y1 = target_y0 + 47
+        # A bubble is independent from emphasis.  Draw the red ellipse only
+        # when the lesson explicitly supplies a non-empty highlight range.
+        if highlight:
+            start_col = max(0, min(int(highlight.get('start_col', 0)), len(line)))
+            end_col = max(start_col + 1, min(int(highlight.get('end_col', len(line))), len(line)))
+            target_x0 = round(CODE_X + FONT.getlength(line[:start_col]) - 14)
+            target_x1 = round(CODE_X + FONT.getlength(line[:end_col]) + 14)
+            d.ellipse((target_x0, target_y0, target_x1, target_y1),
+                      outline=COLORS['callout_red'], width=4)
+
+        if frame is not None and frame < bubble_frame:
+            continue
+        bubble_progress = 1.0 if frame is None else min(1.0, max(0.0, (frame - bubble_frame) / max(1, bubble_end_frame - bubble_frame)))
+        eased = _ease_in(bubble_progress)
+        exiting = frame is not None and frame >= bubble_exit_frame
+        exit_progress = 0.0 if not exiting else min(1.0, max(0.0, (frame - bubble_exit_frame) / max(1, bubble_exit_end_frame - bubble_exit_frame)))
+        exit_eased = _ease_out(exit_progress)
+        bubble_alpha = eased * (1.0 - exit_eased)
+        bubble_fill = _mix_color(COLORS['callout_fill_start'], COLORS['callout_fill'], bubble_progress)
+        lines = _wrap_annotation(annotation.get('text', ''))
+        bubble_h = 22 + len(lines) * 32
+        bubble_y = max(205, min(target_y0 - 5, EDITOR_RECT[3] - bubble_h - 20))
+        while any(not (bubble_y + bubble_h + 8 < y0 or bubble_y - 8 > y1)
+                  for y0, y1 in occupied):
+            bubble_y += 12
+        bubble_y = min(bubble_y, EDITOR_RECT[3] - bubble_h - 20)
+        occupied.append((bubble_y, bubble_y + bubble_h))
+        alpha = round(255 * bubble_alpha)
+        # Draw the connector independently so it grows like a line being written.
+        # The connector anchor belongs to the whole code line, independently of
+        # the red ellipse's selected range.
+        line_end_x = round(CODE_X + FONT.getlength(line))
+        # Anchor the tail at the actual end of the referenced code line.  The
+        # highlight ellipse is an independent emphasis layer and must not
+        # move this point; the small terminal dot sits directly on the last
+        # rendered character's right edge.
+        source_x = line_end_x
+        source_y = (target_y0 + target_y1) // 2
+        connector_progress = eased
+        if exiting:
+            line_exit_progress = min(1.0, max(0.0, (exit_progress - .5) * 2.0))
+            connector_progress *= 1.0 - _ease_out(line_exit_progress)
+        connector_x = round(source_x + (bubble_x - 16 - source_x) * connector_progress)
+        d.line([(source_x, source_y), (connector_x, source_y)],
+               fill=COLORS['accent_dim'] + (round(255 * connector_progress),), width=2)
+        if connector_progress > .5:
+            d.line([(bubble_x - 16, source_y),
+                    (bubble_x - 16, bubble_y + bubble_h // 2)],
+                   fill=COLORS['accent_dim'] + (round(255 * connector_progress),), width=2)
+        d.ellipse((source_x - 4, source_y - 4, source_x + 4, source_y + 4),
+                  fill=COLORS['accent_dim'] + (round(255 * connector_progress),))
+
+        # Claude-style entrance: opacity, translate, scale and blur resolve together.
+        pad = 18
+        patch = Image.new('RGBA', (bubble_right - bubble_x + pad * 2, bubble_h + pad * 2), (0, 0, 0, 0))
+        pd = ImageDraw.Draw(patch)
+        pd.rounded_rectangle((pad, pad, patch.width - pad, patch.height - pad),
+                             radius=18, fill=bubble_fill + (alpha,),
+                             outline=COLORS['accent_dim'] + (alpha,), width=2)
+        text_y = pad + 11
+        for line_text in lines:
+            pd.text((patch.width // 2, text_y), line_text,
+                    font=SMALL_UI_FONT, fill=COLORS['accent'] + (alpha,), anchor='ma')
+            text_y += 32
+        entrance_blur = 2.0 * (1.0 - eased)
+        exit_blur = 2.0 * exit_eased
+        if entrance_blur or exit_blur:
+            patch = patch.filter(ImageFilter.GaussianBlur(radius=max(entrance_blur, exit_blur)))
+        scale = (.96 + .04 * eased) * (1.0 - .04 * exit_eased)
+        if scale != 1:
+            patch = patch.resize((round(patch.width * scale), round(patch.height * scale)), Image.Resampling.LANCZOS)
+        paste_x = round(bubble_x - pad * scale - 8 * (1.0 - eased) - 8 * exit_eased)
+        paste_y = round(bubble_y - pad * scale + (bubble_h + pad * 2 - patch.height) / 2)
+        canvas.paste(patch, (paste_x, paste_y), patch)
+
+
+def render_frame(stage, state, output_stage, caret_on, stages, frame=None):
     im = BASE.copy()
     d = ImageDraw.Draw(im)
     d.text((205,81), f'第 {stage+1} 步', font=UI_FONT, fill=COLORS['accent'], anchor='lt')
@@ -182,6 +312,7 @@ def render_frame(stage, state, output_stage, caret_on, stages):
         assert CODE_X + FONT.getlength(line) < EDITOR_RECT[2]-24
     x,y = caret_position(state)
     assert CODE_X <= x < EDITOR_RECT[2]-24 and y+CARET_HEIGHT < EDITOR_RECT[3]-16
+    _draw_annotations(im, stage, state, stages, frame=frame)
     if caret_on:
         d.rectangle((x,y,x+CARET_WIDTH-1,y+CARET_HEIGHT-1), fill=CARET_COLOR)
     if output_stage >= 0:

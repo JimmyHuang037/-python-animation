@@ -105,7 +105,7 @@ def plain_frame(i,f):
     origin = s['typing_end_frame'] if pos >= 0 else s['start_frame']
     caret = typing or (f-origin)%fps < round(.6*fps)
     output_stage = i if f >= s['result_frame'] else i-1
-    return style.render_frame(i,state,output_stage,caret,stages)
+    return style.render_frame(i,state,output_stage,caret,stages,frame=f)
 
 
 fade_checks = []
@@ -145,6 +145,13 @@ for f,(i,label) in selected.items():
 with wave.open(str(work/'narration.wav')) as w:
     track = w.readframes(w.getnframes())
     assert abs(w.getnframes()/w.getframerate()-count/fps) < .001
+with wave.open(str(work/'voice-only.wav')) as w:
+    voice_only = w.readframes(w.getnframes())
+    assert len(voice_only) == len(track)
+with wave.open(str(work/'typing-clicks.wav')) as w:
+    typing_clicks = w.readframes(w.getnframes())
+    assert len(typing_clicks) == len(track)
+    assert any(typing_clicks), 'Typing sound track is empty'
 for s in stages:
     with wave.open(str(work/f'voice-{s["stage"]}-48k.wav')) as w:
         clip = w.readframes(w.getnframes())
@@ -152,8 +159,8 @@ for s in stages:
     assert start == round(s['typing_start_frame']/fps*48000)*2
     stage_end = round(s['end_frame']/fps*48000)*2
     assert start + len(clip) <= stage_end, 'Narration is truncated or overlaps the next stage'
-    assert track[start:start+len(clip)] == clip
-    assert not any(track[start+len(clip):stage_end]), 'Unexpected audio after stage narration'
+    assert voice_only[start:start+len(clip)] == clip
+    assert not any(voice_only[start+len(clip):stage_end]), 'Unexpected narration after stage'
 contact = Image.new('RGB',(1920,294*len(stages)),'#101820')
 draw = ImageDraw.Draw(contact)
 label_font = ImageFont.truetype(manifest['fonts']['code'],18)
@@ -182,6 +189,8 @@ report = dict(video=str(video),duration_seconds=count/fps,frames=count,stages=le
               fade_difference_by_stage=fade_checks,voice_samples_preserved=True,
               narration_and_typing_start_together=True,
               narration_typing_start_offsets_seconds=[s['typing_start_frame']/fps-s['speech_start'] for s in stages],
+              typing_sound_enabled=manifest.get('typing_sound', {}).get('enabled', False),
+              typing_sound_verified=True,
               audio_matches_comparison=True if args.compare_audio else None,
               contact_sheet=str(contact_path),click_sheet=str(click_path),sha256=hashlib.sha256(video.read_bytes()).hexdigest())
 video.with_suffix('.validation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')

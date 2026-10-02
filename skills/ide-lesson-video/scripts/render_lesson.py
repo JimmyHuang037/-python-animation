@@ -1,5 +1,6 @@
 """Tutorial with simultaneous narration/typing, 0.1-second keys and a measured caret."""
 import argparse
+from array import array
 import os
 import bisect
 import hashlib
@@ -53,6 +54,10 @@ assert POST_TYPE_PAUSE_FRAMES >= math.ceil(APPROACH_SECONDS * FPS), 'Pause too s
 assert RESULT_HOLD_FRAMES > math.ceil(END_SECONDS * FPS), 'Result hold must allow mouse fade to finish'
 STYLE = dict(display_file=LESSON.get('display_file', 'lesson.py'), lesson_label=LESSON.get('lesson_label', 'Python 教学'),
              voice_label=LESSON.get('voice_label', '配音'), stage_count=len(LESSON['stages']))
+TYPING_SOUND = dict(enabled=True, volume=.75, source='')
+TYPING_SOUND.update(LESSON.get('typing_sound', {}))
+assert isinstance(TYPING_SOUND['enabled'], bool)
+assert 0 <= float(TYPING_SOUND['volume']) <= 1
 style.configure(**STYLE)
 
 def checked(command, **kwargs):
@@ -149,8 +154,8 @@ def event_frames(events, first):
     return frames
 
 
-def draw_frame(stage, state, output_stage, caret_on):
-    return render_styled_frame(stage, state, output_stage, caret_on, STAGES)
+def draw_frame(stage, state, output_stage, caret_on, frame=None):
+    return render_styled_frame(stage, state, output_stage, caret_on, STAGES, frame=frame)
 
 
 STAGES = []
@@ -173,8 +178,13 @@ for i, specification in enumerate(LESSON['stages']):
     events = edit_sequence(i, previous, lines, specification.get('edits'))
     frames = event_frames(events, first)
     last = frames[-1]
-    result = last + POST_TYPE_PAUSE_FRAMES
+    circle_frame = last + round(1.0 * FPS)
+    bubble_frame = circle_frame + round(1.0 * FPS)
+    bubble_end_frame = bubble_frame + round(1.4 * FPS)
+    result = bubble_end_frame + round(.4 * FPS)
     end = result + RESULT_HOLD_FRAMES
+    bubble_exit_frame = end - round(1.2 * FPS)
+    bubble_exit_end_frame = end
     assert first / FPS == speech_start
     assert speech_end <= end / FPS, 'Narration must finish before the next stage; shorten narration, split the stage or increase result_hold'
     assert result - last == POST_TYPE_PAUSE_FRAMES
@@ -182,13 +192,16 @@ for i, specification in enumerate(LESSON['stages']):
     STAGES.append(dict(stage=i + 1, start_frame=start, typing_start_frame=first, typing_end_frame=last, result_frame=result, end_frame=end,
                        speech_start=speech_start, speech_end=speech_end, voice_duration=voice_duration,
                        source=str(source), voice=str(voice), voice_sha256=hashlib.sha256(voice.read_bytes()).hexdigest(),
-                       initial=initial, events=events, event_frames=frames, output=output))
+                       initial=initial, events=events, event_frames=frames, output=output,
+                       annotations=specification.get('annotations', []), circle_frame=circle_frame,
+                       bubble_frame=bubble_frame, bubble_end_frame=bubble_end_frame,
+                       bubble_exit_frame=bubble_exit_frame, bubble_exit_end_frame=bubble_exit_end_frame))
     previous = lines
     start = end
 TOTAL_FRAMES = STAGES[-1]['end_frame']
 TOTAL_SECONDS = TOTAL_FRAMES / FPS
 for i, stage in enumerate(STAGES):
-    preview = draw_frame(i, stage['events'][-1], i, True)
+    preview = draw_frame(i, stage['events'][-1], i, True, frame=stage['typing_end_frame'] + 3)
     preview.save(WORK / f'stage{i+1}-preflight.png')
     for state in stage['events']:
         x,y = style.caret_position(state)
@@ -236,9 +249,14 @@ with encoder_log.open('wb') as log:
         for f in range(TOTAL_FRAMES):
             i, state, output_stage, caret_on = video_state(f)
             click_phase = phase_frame(f, STAGES[i]['result_frame'], FPS)
-            signature = (i, tuple(state['lines']), state['row'], state['col'], output_stage, caret_on, click_phase)
+            annotation_phase = (f >= STAGES[i]['circle_frame'],
+                                max(-1, min(f - STAGES[i]['bubble_frame'],
+                                            STAGES[i]['bubble_end_frame'] - STAGES[i]['bubble_frame'])),
+                                max(0, min(f - STAGES[i]['bubble_exit_frame'],
+                                           STAGES[i]['bubble_exit_end_frame'] - STAGES[i]['bubble_exit_frame'])))
+            signature = (i, tuple(state['lines']), state['row'], state['col'], output_stage, caret_on, click_phase, annotation_phase)
             if signature != last_signature:
-                im = draw_frame(i, state, output_stage, caret_on)
+                im = draw_frame(i, state, output_stage, caret_on, frame=f)
                 im = apply_run_click(im, f, STAGES[i]['result_frame'], FPS)
                 raw, last_signature = im.tobytes(), signature
             if f in samples:
@@ -250,19 +268,72 @@ with encoder_log.open('wb') as log:
     if status:
         raise RuntimeError(encoder_log.read_text(encoding='utf-8'))
 
-track = bytearray(round(TOTAL_SECONDS * 48000) * 2)
+SAMPLE_RATE = 48000
+total_samples = round(TOTAL_SECONDS * SAMPLE_RATE)
+voice_track = bytearray(total_samples * 2)
 for stage in STAGES:
     resampled = WORK / f'voice-{stage["stage"]}-48k.wav'
     checked([FF, '-hide_banner', '-v', 'error', '-y', '-i', stage['voice'], '-ar', '48000', '-ac', '1', '-c:a', 'pcm_s16le', str(resampled)])
     with wave.open(str(resampled)) as w:
         audio = w.readframes(w.getnframes())
-    offset = round(stage['speech_start'] * 48000) * 2
-    assert offset + len(audio) <= len(track)
-    track[offset:offset + len(audio)] = audio
+    offset = round(stage['speech_start'] * SAMPLE_RATE) * 2
+    assert offset + len(audio) <= len(voice_track)
+    voice_track[offset:offset + len(audio)] = audio
+
+
+def load_keyboard_source(sample_rate):
+    source = TYPING_SOUND.get('source')
+    if not source:
+        raise ValueError('A real typing_sound.source WAV is required for this preview')
+    path = (LESSON_ROOT / source).resolve()
+    with wave.open(str(path)) as w:
+        assert w.getnchannels() == 1 and w.getsampwidth() == 2
+        samples = array('h', w.readframes(w.getnframes()))
+        original_rate = w.getframerate()
+    if original_rate != sample_rate:
+        raise ValueError('typing_sound.source must be a 48 kHz mono WAV')
+    peak = max(abs(sample) for sample in samples) or 1
+    gain = min(3.0, 26000 / peak)
+    return array('h', [max(-32768, min(32767, round(sample * gain))) for sample in samples])
+
+
+typing_track = array('h', [0]) * total_samples
+if TYPING_SOUND['enabled']:
+    source_samples = load_keyboard_source(SAMPLE_RATE)
+    source_start = round(float(TYPING_SOUND.get('source_start_seconds', 0)) * SAMPLE_RATE)
+    gain = float(TYPING_SOUND['volume'])
+    source_cursor = source_start
+    for stage in STAGES:
+        stage_samples = round((stage['typing_end_frame'] - stage['typing_start_frame'] + 1) / FPS * SAMPLE_RATE)
+        if source_cursor + stage_samples > len(source_samples):
+            raise ValueError('typing_sound.source does not contain enough continuous audio for all stages')
+        offset = round(stage['typing_start_frame'] / FPS * SAMPLE_RATE)
+        for index in range(stage_samples):
+            target = offset + index
+            value = typing_track[target] + round(source_samples[source_cursor + index] * gain)
+            typing_track[target] = max(-32768, min(32767, value))
+        source_cursor += stage_samples
+
+with wave.open(str(WORK / 'typing-clicks.wav'), 'wb') as w:
+    w.setnchannels(1)
+    w.setsampwidth(2)
+    w.setframerate(SAMPLE_RATE)
+    w.writeframes(typing_track.tobytes())
+
+voice_samples = array('h', voice_track)
+with wave.open(str(WORK / 'voice-only.wav'), 'wb') as w:
+    w.setnchannels(1)
+    w.setsampwidth(2)
+    w.setframerate(SAMPLE_RATE)
+    w.writeframes(voice_track)
+for index, click_sample in enumerate(typing_track):
+    value = voice_samples[index] + click_sample
+    voice_samples[index] = max(-32768, min(32767, value))
+track = voice_samples.tobytes()
 with wave.open(str(WORK / 'narration.wav'), 'wb') as w:
     w.setnchannels(1)
     w.setsampwidth(2)
-    w.setframerate(48000)
+    w.setframerate(SAMPLE_RATE)
     w.writeframes(track)
 
 video = VIDEO
@@ -294,6 +365,7 @@ video.with_suffix('.verification.json').write_text(json.dumps(verification, ensu
 (WORK / 'edit-events.json').write_text(json.dumps(STAGES, ensure_ascii=False, indent=2), encoding='utf-8')
 manifest = dict(schema_version=1, video=str(video), work=str(WORK), fps=FPS, frames=TOTAL_FRAMES, duration=TOTAL_SECONDS,
                 lesson=str(LESSON_PATH), style=STYLE, timing=TIMING, stages=STAGES,
+                typing_sound=TYPING_SOUND,
                 fonts=dict(code=style.CODE_FONT_PATH, ui=style.UI_FONT_PATH),
                 execution=LESSON.get('execution', {'mode':'local'}))
 manifest_path = video.with_suffix('.manifest.json')
