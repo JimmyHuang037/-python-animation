@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "display_file": "vehicle.py",
+  "lesson_label": "Python 列表",
+  "voice_label": "阿里百炼 Ethan",
+  "provider": "Alibaba Cloud Bailian",
+  "voice": "Ethan",
+  "timing": {
+    "character_seconds": 0.1,
+    "after_typing": 3.8,
+    "result_hold": 3
+  },
+  "typing_sound": {
+    "enabled": true,
+    "volume": 0.75,
+    "source": "keyboard-continuous.wav",
+    "source_start_seconds": 90
+  },
+  "execution": {
+    "mode": "local",
+    "timeout_seconds": 15
+  },
+  "stages": [
+    {
+      "source": "stage1.py",
+      "audio": "voice-1.wav",
+      "narration": "先创建两个列表，vehicle1 和 vehicle2。",
+      "annotations": [
+        {
+          "text": "两个列表分别保存不同交通工具",
+          "highlight": {"row": 0, "start_col": 0, "end_col": 28}
+        },
+        {
+          "text": "先准备两个数据源",
+          "highlight": {"row": 1, "start_col": 0, "end_col": 28}
+        }
+      ]
+    },
+    {
+      "source": "stage2.py",
+      "audio": "voice-2.wav",
+      "narration": "使用加号连接两个列表，会生成一个新列表，原来的两个列表不会改变。",
+      "annotations": [
+        {
+          "text": "加号生成一个新列表",
+          "highlight": {"row": 2, "start_col": 0, "end_col": 30}
+        },
+        {
+          "text": "原来的两个列表不变",
+          "highlight": {"row": 0, "start_col": 0, "end_col": 28}
+        }
+      ],
+      "edits": [
+        {
+          "op": "move",
+          "row": 1,
+          "col": "end"
+        },
+        {
+          "op": "type",
+          "text": "\nvehicle = vehicle1 + vehicle2"
+        },
+        {
+          "op": "move",
+          "row": "last",
+          "col": "end"
+        },
+        {
+          "op": "type",
+          "text": "\nprint(vehicle)"
+        }
+      ]
+    },
+    {
+      "source": "stage3.py",
+      "audio": "voice-3.wav",
+      "narration": "使用复合赋值加等号，把 bike 添加到 vehicle 列表中。",
+      "annotations": [
+        {
+          "text": "复合赋值直接追加元素",
+          "highlight": {"row": 5, "start_col": 0, "end_col": 22}
+        }
+      ]
+    }
+  ]
+}
