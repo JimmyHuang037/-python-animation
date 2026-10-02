@@ -8,7 +8,7 @@
 | `display_file` | 画面显示的短文件名，如 `vehicle.py` |
 | `lesson_label` / `voice_label` | 页脚课程与配音标签 |
 | `timing.character_seconds` | 默认 `0.1`，必须是 1/30 秒的整数倍 |
-| `timing.after_typing` / `result_hold` | 示例为 `3.8` / `3` 秒；需容纳红圈、气泡、点击和淡出 |
+| `timing.after_typing` / `result_hold` | 默认与示例均为 `3.8` / `3` 秒；有标注时等待至少 `3.8` 秒，无标注时至少 `0.6` 秒；结果停留必须超过 `1.4` 秒以完成鼠标淡出 |
 | `typing_sound.enabled` / `volume` | 连续键盘录音开关和音量 |
 | `typing_sound.source` | 48 kHz、单声道、16-bit PCM WAV，路径相对 lesson.json |
 | `typing_sound.source_start_seconds` | 从连续录音的哪个位置开始取样 |

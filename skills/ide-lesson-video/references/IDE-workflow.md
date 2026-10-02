@@ -2,7 +2,7 @@
 
 ## 1. 找到真正的生成入口
 
-修改已有项目时，从用户最后认可的 MP4 和实际生成它的脚本入手，不重新运行全部历史脚本。本包的有效链条是 `scripts/render_lesson.py`、`scripts/lesson_style.py`、`scripts/run_click_effect.py` 和 `scripts/verify_lesson.py`。
+修改已有项目时，从用户最后认可的 MP4 和实际生成它的脚本入手，不重新运行全部历史脚本。本包的有效链条是 `scripts/render_lesson.py`、`scripts/lesson_style.py`、`scripts/run_click_effect.py`、`scripts/lesson_audio.py` 和 `scripts/verify_lesson.py`。
 
 用户要求复用 IDE 容器时先做只读检查：
 
@@ -44,7 +44,7 @@ docker exec <已确认的IDE容器名> python3 --version
 - `result_frame = typing_end + round(after_typing × fps)`
 - `stage_end = result_frame + round(result_hold × fps)`
 
-下一段从 `stage_end` 开始；旁白必须在本段结束前播完，不能截断或跨入下一段旁白。`move` 或换行也属于编辑事件，段首恰为此类操作时保留准确光标位置。
+下一段从 `stage_end` 开始；旁白必须在本段结束前播完，不能截断或跨入下一段旁白。`move` 或换行也属于编辑事件，段首恰为此类操作时保留准确光标位置。有标注时 `after_typing` 至少为 3.8 秒，增大等待时间会相应推迟运行；无标注时最少等待 0.6 秒完成鼠标进入。省略 timing 时使用 0.1 / 3.8 / 3 秒默认值。
 
 ## 5. 视觉、标注与准确光标
 
@@ -83,6 +83,8 @@ RGB 帧通过 stdin 送入 FFmpeg，H.264 / yuv420p / CRF 18 / AAC / faststart�
 - 抽看同步开始帧、打字中、红圈/气泡、点击、结果和淡出；没有裁切或遗留提示。
 - 连续键盘音效只覆盖打字阶段，`typing-clicks.wav` 非空，旁白不能被截断或跨段。
 
+验收器会解码最终 MP4 音轨，与采用相同响度处理的混音按一秒窗口比较，容许 AAC 编码误差；缺失音轨、静音替换和明显错位均不能通过。混音还须等于旁白与键盘音轨的实际叠加。`typing_sound.enabled: false` 或音量为零时检查键盘音轨静音；课程是否允许关闭仍以本组需求为准。
+
 RGB→YUV420 编码会造成约 1–3 色阶差异，尤其在暗背景。不能仅因这种差异判为残影，也不能盲目放宽阈值掩盖问题。验收脚本同时检查原始图层完全消失、编码画面接近基准，并输出拼图。
 
 ## 9. 复现与交付
@@ -98,6 +100,12 @@ python3 scripts/render_lesson.py \
   --output '<输出目录>/list-demo.mp4'
 python3 scripts/verify_lesson.py \
   --manifest '<输出目录>/list-demo.manifest.json'
+~~~
+
+设置上述字体后，可执行回归检查：
+
+~~~bash
+python3 -m unittest discover -s scripts -p 'test_*.py' -v
 ~~~
 
 不要复制整套环境或凭据。视频、音频和大图片逐个检查，单文件不得超过 100 MB；未执行的验证必须如实标记。

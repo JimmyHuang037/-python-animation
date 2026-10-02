@@ -207,6 +207,8 @@ def _draw_annotations(canvas, stage_index, state, stages, frame=None):
     if frame is not None and frame < circle_frame:
         return
     d = ImageDraw.Draw(canvas)
+    connectors = Image.new('RGBA', canvas.size)
+    connector_draw = ImageDraw.Draw(connectors)
     bubble_x, bubble_right = 1110, 1715
     occupied = []
     for annotation in annotations:
@@ -260,13 +262,13 @@ def _draw_annotations(canvas, stage_index, state, stages, frame=None):
             line_exit_progress = min(1.0, max(0.0, (exit_progress - .5) * 2.0))
             connector_progress *= 1.0 - _ease_out(line_exit_progress)
         connector_x = round(source_x + (bubble_x - 16 - source_x) * connector_progress)
-        d.line([(source_x, source_y), (connector_x, source_y)],
+        connector_draw.line([(source_x, source_y), (connector_x, source_y)],
                fill=COLORS['accent_dim'] + (round(255 * connector_progress),), width=2)
         if connector_progress > .5:
-            d.line([(bubble_x - 16, source_y),
+            connector_draw.line([(bubble_x - 16, source_y),
                     (bubble_x - 16, bubble_y + bubble_h // 2)],
                    fill=COLORS['accent_dim'] + (round(255 * connector_progress),), width=2)
-        d.ellipse((source_x - 4, source_y - 4, source_x + 4, source_y + 4),
+        connector_draw.ellipse((source_x - 4, source_y - 4, source_x + 4, source_y + 4),
                   fill=COLORS['accent_dim'] + (round(255 * connector_progress),))
 
         # Claude-style entrance: opacity, translate, scale and blur resolve together.
@@ -291,6 +293,7 @@ def _draw_annotations(canvas, stage_index, state, stages, frame=None):
         paste_x = round(bubble_x - pad * scale - 8 * (1.0 - eased) - 8 * exit_eased)
         paste_y = round(bubble_y - pad * scale + (bubble_h + pad * 2 - patch.height) / 2)
         canvas.paste(patch, (paste_x, paste_y), patch)
+    canvas.paste(connectors, (0, 0), connectors)
 
 
 def render_frame(stage, state, output_stage, caret_on, stages, frame=None):

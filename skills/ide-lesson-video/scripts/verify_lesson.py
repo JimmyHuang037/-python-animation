@@ -22,12 +22,14 @@ os.environ['IDE_VIDEO_UI_FONT'] = manifest['fonts']['ui']
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 import imageio_ffmpeg
+from lesson_audio import verify_final_audio
 import lesson_style as style
 import run_click_effect as effect
 style.configure(**manifest['style'])
 video, work = Path(manifest['video']), Path(manifest['work'])
 stages, fps = manifest['stages'], manifest['fps']
 ff = imageio_ffmpeg.get_ffmpeg_exe()
+audio_report = verify_final_audio(ff, video, work / 'narration.wav', manifest['frames'] / fps)
 subprocess.run([ff,'-v','error','-xerror','-i',str(video),'-f','null','-'], check=True)
 
 
@@ -151,7 +153,22 @@ with wave.open(str(work/'voice-only.wav')) as w:
 with wave.open(str(work/'typing-clicks.wav')) as w:
     typing_clicks = w.readframes(w.getnframes())
     assert len(typing_clicks) == len(track)
-    assert any(typing_clicks), 'Typing sound track is empty'
+typing_settings = manifest.get('typing_sound', {})
+typing_enabled = typing_settings.get('enabled', False)
+typing_audible = typing_enabled and float(typing_settings.get('volume', .75)) > 0
+typing_samples = np.frombuffer(typing_clicks, dtype='<i2')
+typing_mask = np.zeros(len(typing_samples), dtype=bool)
+for s in stages:
+    first = round(s['typing_start_frame'] / fps * 48000)
+    last = first + round((s['typing_end_frame'] - s['typing_start_frame'] + 1) / fps * 48000)
+    typing_mask[first:last] = True
+    if typing_audible:
+        assert np.any(typing_samples[first:last]), f'Typing sound track is empty in stage {s["stage"]}'
+assert not np.any(typing_samples[~typing_mask]), 'Typing sound outside editing intervals'
+if not typing_audible:
+    assert not np.any(typing_samples), 'Typing sound should be muted'
+expected_mix = np.clip(np.frombuffer(voice_only, dtype='<i2').astype(np.int32) + typing_samples, -32768, 32767)
+assert np.array_equal(np.frombuffer(track, dtype='<i2'), expected_mix), 'Narration mix differs from voice and typing tracks'
 for s in stages:
     with wave.open(str(work/f'voice-{s["stage"]}-48k.wav')) as w:
         clip = w.readframes(w.getnframes())
@@ -189,10 +206,11 @@ report = dict(video=str(video),duration_seconds=count/fps,frames=count,stages=le
               fade_difference_by_stage=fade_checks,voice_samples_preserved=True,
               narration_and_typing_start_together=True,
               narration_typing_start_offsets_seconds=[s['typing_start_frame']/fps-s['speech_start'] for s in stages],
-              typing_sound_enabled=manifest.get('typing_sound', {}).get('enabled', False),
+              typing_sound_enabled=typing_enabled, typing_sound_audible=typing_audible,
               typing_sound_verified=True,
               audio_matches_comparison=True if args.compare_audio else None,
               contact_sheet=str(contact_path),click_sheet=str(click_path),sha256=hashlib.sha256(video.read_bytes()).hexdigest())
+report.update(audio_report)
 video.with_suffix('.validation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
 print(json.dumps(report,ensure_ascii=False,indent=2))
 

@@ -23,6 +23,7 @@ args = parser.parse_args()
 if args.runtime_dir:
     sys.path.insert(0, str(args.runtime_dir.resolve()))
 import imageio_ffmpeg
+from lesson_audio import AUDIO_FILTER
 import lesson_style as style
 from lesson_style import render_frame as render_styled_frame
 from run_click_effect import apply_run_click, phase_frame, FADE_SECONDS, APPROACH_SECONDS, END_SECONDS
@@ -39,7 +40,7 @@ OUT = VIDEO.parent
 WORK = OUT / '.work' / VIDEO.stem
 WORK.mkdir(parents=True, exist_ok=True)
 FPS, WIDTH, HEIGHT = 30, 1920, 1080
-TIMING = dict(character_seconds=.1, after_typing=1., result_hold=2.)
+TIMING = dict(character_seconds=.1, after_typing=3.8, result_hold=3.)
 configured_timing = dict(LESSON.get('timing', {}))
 for legacy_key in ('voice_lead', 'after_voice'):
     assert configured_timing.pop(legacy_key, 0) == 0, f'{legacy_key} is retired: remove it or set it to 0 for simultaneous narration/typing'
@@ -181,10 +182,12 @@ for i, specification in enumerate(LESSON['stages']):
     circle_frame = last + round(1.0 * FPS)
     bubble_frame = circle_frame + round(1.0 * FPS)
     bubble_end_frame = bubble_frame + round(1.4 * FPS)
-    result = bubble_end_frame + round(.4 * FPS)
+    result = last + POST_TYPE_PAUSE_FRAMES
+    if specification.get('annotations'):
+        assert result >= bubble_end_frame + round(.4 * FPS), 'after_typing must be at least 3.8 seconds for annotations'
     end = result + RESULT_HOLD_FRAMES
     bubble_exit_frame = end - round(1.2 * FPS)
-    bubble_exit_end_frame = end
+    bubble_exit_end_frame = end - 1
     assert first / FPS == speech_start
     assert speech_end <= end / FPS, 'Narration must finish before the next stage; shorten narration, split the stage or increase result_hold'
     assert result - last == POST_TYPE_PAUSE_FRAMES
@@ -339,7 +342,7 @@ with wave.open(str(WORK / 'narration.wav'), 'wb') as w:
 video = VIDEO
 pending = WORK / video.name
 checked([FF, '-hide_banner', '-v', 'error', '-y', '-i', str(silent), '-i', str(WORK / 'narration.wav'),
-         '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-af', 'loudnorm=I=-18:TP=-2:LRA=7,aresample=48000',
+         '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-af', AUDIO_FILTER,
          '-c:a', 'aac', '-b:a', '192k', '-t', str(TOTAL_SECONDS), '-movflags', '+faststart', str(pending)])
 checked([FF, '-hide_banner', '-v', 'error', '-xerror', '-i', str(pending), '-f', 'null', '-'])
 frames, duration = imageio_ffmpeg.count_frames_and_secs(str(pending))
