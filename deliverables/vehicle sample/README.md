@@ -20,7 +20,7 @@
 
 源码、素材和音频通过Linux目录/持久卷保存，制作与验证在Docker Linux中执行。未复制node_modules、构建缓存、中间帧、历史废稿或重复MP4。9042 IDE用于查看和修改代码，不代表它已安装动画渲染依赖。
 
-[查看交付MP4](../../../deliverables/vehicle-list-150s-v2.mp4)
+[查看交付MP4](../vehicle-list-150s-v2.mp4)
 
 ## 验证范围
 

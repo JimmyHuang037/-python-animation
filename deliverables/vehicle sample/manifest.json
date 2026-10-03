@@ -9,8 +9,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 2513,
-      "sha256": "0097389657077e50402d160cd9618e040888a7a6cdc30bcb6b2724dac27c8579"
+      "bytes": 2494,
+      "sha256": "5b93bc734fe9c60cd3291d0e03a00fde619bf6b97aaad0cc3851934b1bac00bd"
     },
     {
       "path": "assets/environment/bench.svg",
@@ -299,8 +299,8 @@
     },
     {
       "path": "engineering/README.md",
-      "bytes": 3735,
-      "sha256": "c72262a329b83810449d197f511ccdce819f69441db65dbce01e4cb637f8cb68"
+      "bytes": 3733,
+      "sha256": "fa2e0a04fe8e12fe94c4a2cfd2238f7d5f1d2650bfc7d5c334fd58aaee34294c"
     },
     {
       "path": "engineering/capture.mjs",
@@ -484,8 +484,8 @@
     },
     {
       "path": "status.json",
-      "bytes": 4812,
-      "sha256": "b3fdef3f394963dc7e00457e765b5811a731893dd8abc2f38d757d9dee2bd251"
+      "bytes": 4793,
+      "sha256": "86c0791fad15c1c308637fb90050f9b501acab6b0cb93472946d101867444a7d"
     },
     {
       "path": "subtitles/full-v1.srt",

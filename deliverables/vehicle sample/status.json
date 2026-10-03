@@ -3,7 +3,7 @@
   "duration": 150,
   "task": "five list operations with vehicle; concept animation",
   "source_execution": "Docker Linux",
-  "delivered_video": "../../../deliverables/vehicle-list-150s-v2.mp4",
+  "delivered_video": "../vehicle-list-150s-v2.mp4",
   "video_sha256": "0198dc26c4eea768195322ef7bf6858400328fd05a0f91653372d2d15d3f2ad5",
   "audio": "audio/full-v1/mix.wav; restored pre-extra-BGM version",
   "approvals": [

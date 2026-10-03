@@ -9,7 +9,7 @@
 本机可在制作容器内复制到已有可写绑定目录/project/reproduce-current-v2。例：
 
 ```bash
-docker exec vehicle-sample-dev python -c "from pathlib import Path; import shutil; src=Path('/repo/python-animation/course/lessons/vehicle sample'); dst=Path('/project/reproduce-current-v2'); assert not dst.exists(), 'Choose a fresh directory'; shutil.copytree(src,dst)"
+docker exec vehicle-sample-dev python -c "from pathlib import Path; import shutil; src=Path('/repo/python-animation/deliverables/vehicle sample'); dst=Path('/project/reproduce-current-v2'); assert not dst.exists(), 'Choose a fresh directory'; shutil.copytree(src,dst)"
 docker exec -it -w /project/reproduce-current-v2/engineering vehicle-sample-dev bash
 ```
 
