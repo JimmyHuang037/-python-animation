@@ -1,0 +1,13 @@
+{
+  "repository": "anthropics/skills",
+  "stars": 179444,
+  "commit": "8a1541c4a3ffa5a20a5a91de0dcf3f0bab1d1ef4",
+  "checked_at_utc": "2026-10-03T07:34:33.819757+00:00",
+  "source": "https://api.github.com/repos/anthropics/skills",
+  "name": "frontend-design",
+  "skill_path": "skills/frontend-design/SKILL.md",
+  "download_path": "external-skills/frontend-design",
+  "scope": "visual hierarchy, deliberate color roles, typography, whitespace and restrained detail, implemented in Motion Canvas",
+  "not_adopted": "HTML/CSS UI output and alternative aesthetic preferences; approved illustration style and Chinese legibility prevail",
+  "remotion_dependency": false
+}

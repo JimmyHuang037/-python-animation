@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220"><g stroke="#403F3C" stroke-linecap="round" stroke-linejoin="round">
+<ellipse cx="184" cy="190" rx="145" ry="16" fill="#675D54" opacity=".18" stroke="none"/>
+<!-- Mercedes G-class: upright cabin, square hood, round lamps and central star. -->
+<path d="M48 56 L207 53 L250 77 L253 167 L218 193 L48 177 Z" fill="#B9C7C4" stroke-width="3.5"/>
+<path d="M47 57 L205 53 L244 77 L89 78 Z" fill="#E5EBDF" stroke-width="3"/>
+<path d="M55 84 L208 79 L210 165 L58 165 Z" fill="#B0C0BD" stroke-width="2.8"/>
+<path d="M65 86 L110 84 L110 122 L66 123 Z M122 84 L164 82 L165 121 L122 122 Z M175 82 L205 81 L206 120 L176 121 Z" fill="#49636E" stroke-width="2.7"/>
+<path d="M216 64 L242 80 L244 122 L216 118 Z" fill="#7E9CAA" stroke-width="2.7"/>
+<path d="M77 91 L71 110 M134 89 L128 106 M221 79 L224 104" stroke="#DCE9E2" stroke-width="4" opacity=".8"/>
+<path d="M57 131 L210 126 L210 168 L56 168 Z" fill="#B3C0B9" stroke-width="2.4"/>
+<path d="M116 124 L117 174 M171 123 L173 177" stroke-width="2"/>
+<path d="M131 134 L145 134 M182 133 L195 132" stroke="#ECF0E5" stroke-width="4"/>
+<path d="M210 120 L239 114 L318 129 L286 150 L211 142 Z" fill="#E1E8DB" stroke-width="3"/>
+<path d="M211 143 L285 153 L289 193 L215 181 Z" fill="#A2B6B1" stroke-width="3"/>
+<path d="M286 151 L321 131 L325 175 L290 194 Z" fill="#78918D" stroke-width="3.3"/>
+<path d="M290 159 L318 143 L319 175 L292 187 Z" fill="#37484B" stroke-width="2.2"/>
+<path d="M294 159 L313 150 M295 169 L314 160 M296 179 L315 170" stroke="#D0DEDA" stroke-width="2.4"/>
+<ellipse cx="307" cy="164" rx="7" ry="9" fill="#425C61" stroke="#F5F4E8" stroke-width="2"/>
+<path d="M307 156 L307 164 L301 170 M307 164 L313 167" fill="none" stroke="#F5F4E8" stroke-width="1.8"/>
+<ellipse cx="291" cy="151" rx="5" ry="7" fill="#FFF1C6" stroke-width="2"/><ellipse cx="320" cy="137" rx="4" ry="6" fill="#FFF1C6" stroke-width="2"/>
+<path d="M289 186 L324 168" stroke="#D6E1D6" stroke-width="6"/>
+<path d="M37 91 Q23 92 24 130 Q25 154 39 152 L49 147 L48 94 Z" fill="#58666A" stroke-width="3"/>
+<path d="M39 104 L43 145" stroke="#ACBCB5" stroke-width="3"/>
+<path d="M58 170 L274 192" stroke="#728E89" stroke-width="5"/>
+<ellipse cx="86" cy="175" rx="21" ry="28" fill="#374145" stroke-width="3"/><ellipse cx="87" cy="175" rx="12" ry="17" fill="#CDDCD5" stroke-width="2"/>
+<ellipse cx="242" cy="186" rx="20" ry="27" fill="#374145" stroke-width="3"/><ellipse cx="243" cy="186" rx="11" ry="16" fill="#CDDCD5" stroke-width="2"/>
+<path d="M87 161 L87 189 M77 173 L96 177 M243 173 L243 199 M234 184 L252 188" stroke="#7A9495" stroke-width="2"/>
+<path d="M58 60 L191 57 M67 132 L201 129" stroke="#FFF9E9" stroke-width="3" opacity=".8"/>
+</g></svg>

@@ -1,0 +1,7 @@
+engineering/node_modules/
+engineering/dist/
+intermediate/
+outputs/
+validation/
+__pycache__/
+*.pyc

@@ -1,0 +1,76 @@
+{
+  "addition": {
+    "result": [
+      "迈巴赫",
+      "劳斯莱斯",
+      "奔驰"
+    ],
+    "source": [
+      "迈巴赫",
+      "劳斯莱斯"
+    ],
+    "source_unchanged": true,
+    "new_list": true
+  },
+  "multiplication": {
+    "result": [
+      "迈巴赫",
+      "劳斯莱斯",
+      "迈巴赫",
+      "劳斯莱斯"
+    ],
+    "source": [
+      "迈巴赫",
+      "劳斯莱斯"
+    ],
+    "new_list": true
+  },
+  "append_one": {
+    "result": [
+      "迈巴赫",
+      "劳斯莱斯",
+      "奔驰"
+    ],
+    "return": null
+  },
+  "append_group": {
+    "result": [
+      "迈巴赫",
+      "劳斯莱斯",
+      [
+        "奔驰",
+        "迈巴赫"
+      ]
+    ],
+    "outer_length": 3,
+    "inner_length": 2,
+    "same_inner_list": true,
+    "return": null
+  },
+  "extend": {
+    "result": [
+      "迈巴赫",
+      "劳斯莱斯",
+      "奔驰",
+      "迈巴赫"
+    ],
+    "source_group": [
+      "奔驰",
+      "迈巴赫"
+    ],
+    "return": null
+  },
+  "insert": {
+    "result": [
+      "迈巴赫",
+      "奔驰",
+      "劳斯莱斯"
+    ],
+    "indices": {
+      "0": "迈巴赫",
+      "1": "奔驰",
+      "2": "劳斯莱斯"
+    },
+    "return": null
+  }
+}

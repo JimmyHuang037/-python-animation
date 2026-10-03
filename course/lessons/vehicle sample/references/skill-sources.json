@@ -1,0 +1,49 @@
+[
+  {
+    "repository": "anthropics/skills",
+    "stars": 179444,
+    "commit": "8a1541c4a3ffa5a20a5a91de0dcf3f0bab1d1ef4",
+    "checked_at_utc": "2026-10-03T07:34:33.819757+00:00",
+    "source": "https://api.github.com/repos/anthropics/skills",
+    "name": "frontend-design",
+    "skill_path": "skills/frontend-design/SKILL.md",
+    "download_path": "external-skills/frontend-design",
+    "scope": "visual hierarchy, deliberate color roles, typography, whitespace and restrained detail, implemented in Motion Canvas",
+    "not_adopted": "HTML/CSS UI output and alternative aesthetic preferences; approved illustration style and Chinese legibility prevail",
+    "remotion_dependency": false
+  },
+  {
+    "repository": "coleam00/excalidraw-diagram-skill",
+    "stars": 4914,
+    "commit": "8646fcc9f74f38539c6cdb4c969723336a96ddcd",
+    "checked_at": "2026-10-03T08:07:46.567842+00:00",
+    "skill_paths": [
+      "SKILL.md"
+    ],
+    "download_path": "external-skills/excalidraw-diagram",
+    "adopted": "visual argument, nested grouping, selective containers, rendered view-fix loop; hand-ink strokes and original approved palette",
+    "excluded": "Excalidraw engine/JSON rendering, mono font, opaque backgrounds and fixed brand palette; Motion Canvas and approved Chinese legibility prevail",
+    "remotion_dependency": false
+  },
+  {
+    "repository": "LottieFiles/motion-design-skill",
+    "stars": 1869,
+    "checked_at_utc": "2026-10-03T08:23:46.217504+00:00",
+    "source": "https://api.github.com/repos/LottieFiles/motion-design-skill",
+    "commit": "f9a8a041b85185ee4881b3471d3415e939aac772",
+    "license": {
+      "key": "mit",
+      "name": "MIT License",
+      "spdx_id": "MIT",
+      "url": "https://api.github.com/licenses/mit",
+      "node_id": "MDc6TGljZW5zZTEz"
+    },
+    "skills": [
+      "skills/motion-design/SKILL.md"
+    ],
+    "selected": true,
+    "remotion_dependency": false,
+    "adopted": "Primary/secondary/ambient motion; narrative setup-action-resolution; paper overshoot3–5%; arc paths, choreography, layered parallax; translated to Motion Canvas",
+    "excluded": "UI timing limits and any CSS/GSAP/Framer-specific implementation; preserve Chinese narration and teaching holds"
+  }
+]

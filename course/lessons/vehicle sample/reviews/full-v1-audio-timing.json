@@ -1,0 +1,564 @@
+{
+  "cues": [
+    {
+      "start": 0.5,
+      "end": 4.0,
+      "text": "用车库表示列表，车代表汽车名称。",
+      "file": "voice-00.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 2.719708333333333,
+      "speech_end": 3.219708333333333,
+      "trimmed_duration": 2.719708333333333,
+      "time_compression": 1
+    },
+    {
+      "start": 4.4,
+      "end": 8.0,
+      "text": "这两项是迈巴赫和劳斯莱斯，列表叫 vehicle。",
+      "file": "voice-01.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 3.216875,
+      "speech_end": 7.616875,
+      "trimmed_duration": 3.216875,
+      "time_compression": 1
+    },
+    {
+      "start": 8.5,
+      "end": 11.7,
+      "text": "位置有顺序，编号从零开始。",
+      "file": "voice-02.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 2.3339166666666666,
+      "speech_end": 10.833916666666667,
+      "trimmed_duration": 2.3339166666666666,
+      "time_compression": 1
+    },
+    {
+      "start": 12.5,
+      "end": 16.0,
+      "text": "列表相加，把两个列表连接成一个新列表。",
+      "file": "voice-03.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 3.071875,
+      "speech_end": 15.571875,
+      "trimmed_duration": 3.071875,
+      "time_compression": 1
+    },
+    {
+      "start": 16.4,
+      "end": 20.0,
+      "text": "左边是迈巴赫和劳斯莱斯，右边是奔驰。",
+      "file": "voice-04.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 2.9018333333333333,
+      "speech_end": 19.30183333333333,
+      "trimmed_duration": 2.9018333333333333,
+      "time_compression": 1
+    },
+    {
+      "start": 20.5,
+      "end": 24.5,
+      "text": "先接上左边这组，再接上右边的奔驰。",
+      "file": "voice-05.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 2.673604166666667,
+      "speech_end": 23.173604166666667,
+      "trimmed_duration": 2.673604166666667,
+      "time_compression": 1
+    },
+    {
+      "start": 25.0,
+      "end": 29.5,
+      "text": "新列表依次是，迈巴赫、劳斯莱斯、奔驰。",
+      "file": "voice-06.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 3.3134375,
+      "speech_end": 28.3134375,
+      "trimmed_duration": 3.3134375,
+      "time_compression": 1
+    },
+    {
+      "start": 30.0,
+      "end": 34.5,
+      "text": "上面两个原列表都没变，下面是新生成的列表。",
+      "file": "voice-07.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 2.9099791666666666,
+      "speech_end": 32.909979166666666,
+      "trimmed_duration": 2.9099791666666666,
+      "time_compression": 1
+    },
+    {
+      "start": 35.0,
+      "end": 37.6,
+      "text": "相加，连接得到新列表。",
+      "file": "voice-08.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 1.8495,
+      "speech_end": 36.8495,
+      "trimmed_duration": 1.8495,
+      "time_compression": 1
+    },
+    {
+      "start": 38.5,
+      "end": 42.2,
+      "text": "列表相乘，是把整组元素按顺序重复。",
+      "file": "voice-09.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 3.2452916666666667,
+      "speech_end": 41.74529166666667,
+      "trimmed_duration": 3.2452916666666667,
+      "time_compression": 1
+    },
+    {
+      "start": 42.6,
+      "end": 46.0,
+      "text": "乘以二，就是这一整组重复两遍。",
+      "file": "voice-10.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 2.314416666666667,
+      "speech_end": 44.91441666666667,
+      "trimmed_duration": 2.314416666666667,
+      "time_compression": 1
+    },
+    {
+      "start": 47.0,
+      "end": 51.5,
+      "text": "结果是，迈巴赫、劳斯莱斯、迈巴赫、劳斯莱斯。",
+      "file": "voice-11.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 4.160666666666667,
+      "speech_end": 51.160666666666664,
+      "trimmed_duration": 4.160666666666667,
+      "time_compression": 1
+    },
+    {
+      "start": 52.0,
+      "end": 56.0,
+      "text": "整组重复，别把同一种车排在一起。",
+      "file": "voice-12.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 2.3463541666666665,
+      "speech_end": 54.346354166666664,
+      "trimmed_duration": 2.3463541666666665,
+      "time_compression": 1
+    },
+    {
+      "start": 56.5,
+      "end": 59.6,
+      "text": "这也是新列表，原列表没有改变。",
+      "file": "voice-13.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 2.137395833333333,
+      "speech_end": 58.637395833333336,
+      "trimmed_duration": 2.137395833333333,
+      "time_compression": 1
+    },
+    {
+      "start": 60.5,
+      "end": 64.4,
+      "text": "回到两项，用 append 把奔驰追加到末尾。",
+      "file": "voice-14.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 2.7200625,
+      "speech_end": 63.2200625,
+      "trimmed_duration": 2.7200625,
+      "time_compression": 1
+    },
+    {
+      "start": 65.4,
+      "end": 68.6,
+      "text": "原列表多了一项，现在一共三项。",
+      "file": "voice-15.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 2.210166666666667,
+      "speech_end": 67.61016666666667,
+      "trimmed_duration": 2.210166666666667,
+      "time_compression": 1
+    },
+    {
+      "start": 69.4,
+      "end": 73.0,
+      "text": "重新从两项开始。如果追加的是一个小列表呢？",
+      "file": "voice-16.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 3.4528125,
+      "speech_end": 72.8528125,
+      "trimmed_duration": 3.4528125,
+      "time_compression": 1
+    },
+    {
+      "start": 73.3,
+      "end": 77.0,
+      "text": "这里面有奔驰和迈巴赫，要把它们作为一个整体加入。",
+      "file": "voice-17.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 3.3009791666666666,
+      "speech_end": 76.60097916666666,
+      "trimmed_duration": 3.3009791666666666,
+      "time_compression": 1
+    },
+    {
+      "start": 78.0,
+      "end": 81.6,
+      "text": "整个小列表，只占末尾的一个位置。",
+      "file": "voice-18.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 2.243625,
+      "speech_end": 80.243625,
+      "trimmed_duration": 2.243625,
+      "time_compression": 1
+    },
+    {
+      "start": 81.8,
+      "end": 84.8,
+      "text": "外层三项，最后一项里面还有两项。",
+      "file": "voice-19.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 2.6297291666666665,
+      "speech_end": 84.42972916666666,
+      "trimmed_duration": 2.6297291666666665,
+      "time_compression": 1
+    },
+    {
+      "start": 85.5,
+      "end": 89.0,
+      "text": "再回到最初两项，换成 extend。",
+      "file": "voice-20.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 2.3358541666666666,
+      "speech_end": 87.83585416666666,
+      "trimmed_duration": 2.3358541666666666,
+      "time_compression": 1
+    },
+    {
+      "start": 89.5,
+      "end": 93.0,
+      "text": "这次，把小列表里的元素逐项加入。",
+      "file": "voice-21.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 2.7420833333333334,
+      "speech_end": 92.24208333333334,
+      "trimmed_duration": 2.7420833333333334,
+      "time_compression": 1
+    },
+    {
+      "start": 93.4,
+      "end": 96.6,
+      "text": "先把奔驰加到末尾。",
+      "file": "voice-22.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 0.8479166666666667,
+      "speech_end": 94.24791666666667,
+      "trimmed_duration": 0.8479166666666667,
+      "time_compression": 1
+    },
+    {
+      "start": 97.6,
+      "end": 100.8,
+      "text": "再加入迈巴赫。",
+      "file": "voice-23.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 0.7690625,
+      "speech_end": 98.3690625,
+      "trimmed_duration": 0.7690625,
+      "time_compression": 1
+    },
+    {
+      "start": 101.4,
+      "end": 105.2,
+      "text": "原列表变成四项，输入的小列表仍然保留。",
+      "file": "voice-24.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 3.3665833333333333,
+      "speech_end": 104.76658333333334,
+      "trimmed_duration": 3.3665833333333333,
+      "time_compression": 1
+    },
+    {
+      "start": 105.6,
+      "end": 109.5,
+      "text": "append 加一个整体，extend 加里面的各项。",
+      "file": "voice-25.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 2.9220208333333333,
+      "speech_end": 108.52202083333333,
+      "trimmed_duration": 2.9220208333333333,
+      "time_compression": 1
+    },
+    {
+      "start": 109.7,
+      "end": 111.9,
+      "text": "它们都修改原列表。",
+      "file": "voice-26.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 0.9358958333333334,
+      "speech_end": 110.63589583333334,
+      "trimmed_duration": 0.9358958333333334,
+      "time_compression": 1
+    },
+    {
+      "start": 112.5,
+      "end": 116.5,
+      "text": "insert，把元素插到指定位置之前。",
+      "file": "voice-27.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 2.5460833333333333,
+      "speech_end": 115.04608333333333,
+      "trimmed_duration": 2.5460833333333333,
+      "time_compression": 1
+    },
+    {
+      "start": 117.0,
+      "end": 121.0,
+      "text": "还是迈巴赫、劳斯莱斯，索引一的位置是劳斯莱斯。",
+      "file": "voice-28.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 3.9361875,
+      "speech_end": 120.9361875,
+      "trimmed_duration": 3.9361875,
+      "time_compression": 1
+    },
+    {
+      "start": 121.5,
+      "end": 125.0,
+      "text": "奔驰要插在它前面，先让后面的元素向右移。",
+      "file": "voice-29.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 3.0185,
+      "speech_end": 124.5185,
+      "trimmed_duration": 3.0185,
+      "time_compression": 1
+    },
+    {
+      "start": 125.5,
+      "end": 128.5,
+      "text": "车位让出来，奔驰再进入这个位置。",
+      "file": "voice-30.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 2.1616666666666666,
+      "speech_end": 127.66166666666666,
+      "trimmed_duration": 2.1616666666666666,
+      "time_compression": 1
+    },
+    {
+      "start": 129.0,
+      "end": 133.2,
+      "text": "结果是，迈巴赫、奔驰、劳斯莱斯。",
+      "file": "voice-31.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 3.0499583333333335,
+      "speech_end": 132.04995833333334,
+      "trimmed_duration": 3.0499583333333335,
+      "time_compression": 1
+    },
+    {
+      "start": 133.6,
+      "end": 137.6,
+      "text": "劳斯莱斯的索引，从一变成了二。",
+      "file": "voice-32.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 1.9285208333333332,
+      "speech_end": 135.52852083333332,
+      "trimmed_duration": 1.9285208333333332,
+      "time_compression": 1
+    },
+    {
+      "start": 140.0,
+      "end": 144.6,
+      "text": "相加连接，相乘重复，都会生成新列表。",
+      "file": "voice-33.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 3.116979166666667,
+      "speech_end": 143.11697916666668,
+      "trimmed_duration": 3.116979166666667,
+      "time_compression": 1
+    },
+    {
+      "start": 145.0,
+      "end": 149.5,
+      "text": "append、extend、insert，都修改原列表。",
+      "file": "voice-34.mp3",
+      "tts_rate": "+10%",
+      "source_duration": 2.9130625,
+      "speech_end": 147.9130625,
+      "trimmed_duration": 2.9130625,
+      "time_compression": 1
+    }
+  ],
+  "bpm": 96,
+  "sfx_events": [
+    {
+      "frame": 54,
+      "sample_time": 1.8,
+      "kind": "car-contact"
+    },
+    {
+      "frame": 60,
+      "sample_time": 2.0,
+      "kind": "car-contact"
+    },
+    {
+      "frame": 360,
+      "sample_time": 12.0,
+      "kind": "chapter-change"
+    },
+    {
+      "frame": 570,
+      "sample_time": 19.0,
+      "kind": "door-open"
+    },
+    {
+      "frame": 624,
+      "sample_time": 20.8,
+      "kind": "car-contact"
+    },
+    {
+      "frame": 690,
+      "sample_time": 23.0,
+      "kind": "door-open"
+    },
+    {
+      "frame": 744,
+      "sample_time": 24.8,
+      "kind": "car-contact"
+    },
+    {
+      "frame": 810,
+      "sample_time": 27.0,
+      "kind": "door-open"
+    },
+    {
+      "frame": 864,
+      "sample_time": 28.8,
+      "kind": "car-contact"
+    },
+    {
+      "frame": 1140,
+      "sample_time": 38.0,
+      "kind": "chapter-change"
+    },
+    {
+      "frame": 1272,
+      "sample_time": 42.4,
+      "kind": "door-open"
+    },
+    {
+      "frame": 1320,
+      "sample_time": 44.0,
+      "kind": "door-open"
+    },
+    {
+      "frame": 1323,
+      "sample_time": 44.1,
+      "kind": "car-contact"
+    },
+    {
+      "frame": 1371,
+      "sample_time": 45.7,
+      "kind": "car-contact"
+    },
+    {
+      "frame": 1404,
+      "sample_time": 46.8,
+      "kind": "door-open"
+    },
+    {
+      "frame": 1449,
+      "sample_time": 48.3,
+      "kind": "door-open"
+    },
+    {
+      "frame": 1455,
+      "sample_time": 48.5,
+      "kind": "car-contact"
+    },
+    {
+      "frame": 1500,
+      "sample_time": 50.0,
+      "kind": "car-contact"
+    },
+    {
+      "frame": 1800,
+      "sample_time": 60.0,
+      "kind": "chapter-change"
+    },
+    {
+      "frame": 1890,
+      "sample_time": 63.0,
+      "kind": "door-open"
+    },
+    {
+      "frame": 1944,
+      "sample_time": 64.8,
+      "kind": "car-contact"
+    },
+    {
+      "frame": 2070,
+      "sample_time": 69.0,
+      "kind": "chapter-change"
+    },
+    {
+      "frame": 2211,
+      "sample_time": 73.7,
+      "kind": "door-open"
+    },
+    {
+      "frame": 2316,
+      "sample_time": 77.2,
+      "kind": "car-contact"
+    },
+    {
+      "frame": 2550,
+      "sample_time": 85.0,
+      "kind": "chapter-change"
+    },
+    {
+      "frame": 2805,
+      "sample_time": 93.5,
+      "kind": "door-open"
+    },
+    {
+      "frame": 2859,
+      "sample_time": 95.3,
+      "kind": "car-contact"
+    },
+    {
+      "frame": 2925,
+      "sample_time": 97.5,
+      "kind": "door-open"
+    },
+    {
+      "frame": 2988,
+      "sample_time": 99.6,
+      "kind": "car-contact"
+    },
+    {
+      "frame": 3360,
+      "sample_time": 112.0,
+      "kind": "chapter-change"
+    },
+    {
+      "frame": 3666,
+      "sample_time": 122.2,
+      "kind": "door-open"
+    },
+    {
+      "frame": 3720,
+      "sample_time": 124.0,
+      "kind": "car-contact"
+    },
+    {
+      "frame": 3828,
+      "sample_time": 127.6,
+      "kind": "car-contact"
+    },
+    {
+      "frame": 4200,
+      "sample_time": 140.0,
+      "kind": "chapter-change"
+    }
+  ],
+  "peak": 0.6154757738113403,
+  "subjective_audition": "unverified; model audio input unavailable"
+}

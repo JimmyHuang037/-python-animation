@@ -1,0 +1,21 @@
+{
+  "scope": "current v2 restored video engineering transfer",
+  "install": "npm ci passed",
+  "typecheck": "passed",
+  "build": "passed",
+  "render_range": [
+    79,
+    79.03333333333333
+  ],
+  "captured_frames": 2,
+  "frame_visual_review": "First actual exported frame viewed; models, nested tray, names correct",
+  "full_rerender": "not repeated",
+  "subjective_full_playback_and_audio": "unverified",
+  "portable_scripts": [
+    "generate-full-voice.py",
+    "make-audio-full-v1.py",
+    "export-video.py",
+    "verify-video.py"
+  ],
+  "container_files_changed": false
+}

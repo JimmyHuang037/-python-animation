@@ -1,0 +1,100 @@
+{
+  "version": "full-v2-restored",
+  "duration": 150,
+  "task": "five list operations with vehicle; concept animation",
+  "source_execution": "Docker Linux",
+  "delivered_video": "../../../deliverables/vehicle-list-150s-v2.mp4",
+  "video_sha256": "0198dc26c4eea768195322ef7bf6858400328fd05a0f91653372d2d15d3f2ad5",
+  "audio": "audio/full-v1/mix.wav; restored pre-extra-BGM version",
+  "approvals": [
+    {
+      "stage": "style_selection",
+      "material": "materials/references/style-options.md v1",
+      "user_quote": "A 的画风＋B 的状态对照布局",
+      "scope": "visual direction only; does not approve director or frames"
+    },
+    {
+      "stage": "script_review",
+      "material": "script-v1.md / v1-polished-1",
+      "sha256": "be57374bee308aa48ea89af62fb4e0172085de26e4fbf133a2d42352224434a8",
+      "user_quote": "可以",
+      "scope": "polished narration approved; other production gates not approved by this message"
+    },
+    {
+      "stage": "director_review",
+      "material": "director-v1.md + storyboard-v1.md + script-v1.md v1-polished-1",
+      "user_quote": "是",
+      "scope": "director,1080p,30fps,Yunxi TTS and preparation of representative frame; no sample/full-film approval",
+      "applicability_to_v2": "needs_review for new camera, compositions, shot/layer/motion plan; original approval preserved"
+    },
+    {
+      "stage": "frame_review",
+      "material": "outputs/vehicle-frame-v5.png",
+      "sha256": "be0338dd5986e3de173423d73a90f2cdaca4f00b65b73a868e303dee4347a882",
+      "user_quote": "可以。在github上寻找手绘风格skill（github stars超过1k+，不要选remotion！），下载下来并生成30s样例，按照 animation-making 运镜要有层次感，不要做成像ppt一样",
+      "scope": "v5 frame approved; produce 30s sample only",
+      "applicability_to_v2": "needs_review for new camera, compositions, shot/layer/motion plan; original approval preserved"
+    },
+    {
+      "stage": "director_review",
+      "version": "v2",
+      "material": [
+        "director-v2.md",
+        "storyboard-v2.md",
+        "storyboard-v2.json",
+        "script-v2.md",
+        "sample-events-v2.json"
+      ],
+      "hashes": {
+        "director-v2.md": "c0a7283dd2f0ed488bc7c74d49682f90e0f0b091e6797265c8101363a09c0b38",
+        "storyboard-v2.md": "b45aabc9cbd07ee22c77eb4c886b7da9beffd85450c5e5bada3032b301b601f6",
+        "storyboard-v2.json": "08d153b882ce1532d254f6f3ddd973f00d1ff91f772e93afac7bd2ab2e243e86",
+        "script-v2.md": "9cc61b793634a61d4036712d529523379ef6907e410bc8f415d8b2add909a3e6",
+        "sample-events-v2.json": "8044ffab190705af5953639d74971e4526d7817532b2b2ea909d24c798d30cf4"
+      },
+      "user_quote": "可以",
+      "scope": "v2 director/shot/camera/layer/motion/music proposal and recap approved; unlock representative frame only",
+      "applicability_to_v3": "needs_review for text safety zones, shared spatial transforms and camera/path choreography; historical approval preserved"
+    },
+    {
+      "stage": "frame_review",
+      "version": "v6",
+      "material": "outputs/vehicle-frame-v6.png",
+      "sha256": "cefc59823123ee4649c0be643378052624c842fd89770158437ff817d1bbf149",
+      "user_quote": "通过",
+      "scope": "frame-v6 approved; unlock v2 continuous30s sample, not full film",
+      "applicability_to_v3": "needs_review for text safety zones, shared spatial transforms and camera/path choreography; historical approval preserved"
+    },
+    {
+      "stage": "sample_production",
+      "version": "v3",
+      "material": "director-v3.md",
+      "user_quote": "重新生成新版30s，无需生成一帧样例",
+      "scope": "Authorize revised30s production directly; explicitly waive representative single-frame gate for this revision only. No full-film approval."
+    },
+    {
+      "stage": "sample_production",
+      "version": "v4",
+      "material": "director-garage-v4.md",
+      "user_quote": "直接生成30s样例视频",
+      "scope": "Authorize garage revision30s directly; bypass representative-frame gate for this revision. No full-film authorization."
+    },
+    {
+      "stage": "sample_review_and_full_production",
+      "material": "outputs/vehicle-sample-30s-v4.mp4",
+      "user_quote": "继续生成成片",
+      "scope": "Approve continuation from delivered garage sample to complete150s film; retain no nested garage. Existing realtime/audio inspection limitations remain disclosed."
+    },
+    {
+      "stage": "model_revision_review",
+      "material": "outputs/vehicle-model-v2-detail.png",
+      "user_quote": "可以",
+      "scope": "Approve revised Maybach/Rolls models and replace throughout full film"
+    }
+  ],
+  "model_approval": "可以",
+  "remaining_checks": [
+    "Complete real-time playback",
+    "Complete subjective audio audition"
+  ]
+}
