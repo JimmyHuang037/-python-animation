@@ -17,6 +17,7 @@ local-runtime/
 !.env.example
 .claude/settings.local.json
 *.log
+.secrets/
 
 # 五行实操录制的本地依赖和编辑器会话
 /build/list-demo/tools/
@@ -32,3 +33,6 @@ local-runtime/
 
 # promo40 的逐帧渲染中间产物；成片和验证记录可版本管理。
 /build/promo40/frames/
+
+# list-ops 配音的 TTS 缓存；课程内 audio/*.wav 纳入版本管理。
+/course/lessons/list-ops/voice-cache/
