@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "display_file": "vehicle.py",
+  "lesson_label": "列表操作 5：insert",
+  "voice_label": "豆包 Tina2.0",
+  "timing": {
+    "character_seconds": 0.1,
+    "after_typing": 3.8,
+    "result_hold": 8
+  },
+  "typing_sound": {
+    "enabled": true,
+    "volume": 0.5,
+    "source": "../../../../skills/ide-lesson-video/assets/list-demo/keyboard-continuous.wav",
+    "source_start_seconds": 0
+  },
+  "execution": {
+    "mode": "local",
+    "timeout_seconds": 15
+  },
+  "stages": [
+    {
+      "source": "src/stage1.py",
+      "audio": "audio/stage1.wav",
+      "narration": "最后来看 insert 方法。它在指定位置插入一个元素，直接修改原列表。第一个参数是插入位置，第二个是插入的元素。执行 vehicle.insert(3, 'plane')，就在 ship 前面插入 plane。",
+      "annotations": [
+        { "text": "插入位置", "row": 1 },
+        { "text": "插入元素", "row": 1 }
+      ]
+    },
+    {
+      "source": "src/stage2.py",
+      "audio": "audio/stage2.wav",
+      "narration": "接着执行 vehicle.insert(0, 'plane')，就会在列表最前面插入一个 plane。",
+      "edits": [
+        { "op": "move", "row": 2, "col": "end" },
+        { "op": "backspace", "count": 14 },
+        { "op": "type", "text": "vehicle.insert(0, 'plane')\nprint(vehicle)" }
+      ]
+    },
+    {
+      "source": "src/stage3.py",
+      "audio": "audio/stage3.wav",
+      "narration": "插入位置也可以用负数。执行 vehicle.insert(-2, 'bike')，会在当前倒数第二个元素 plane 前面插入 bike。",
+      "edits": [
+        { "op": "move", "row": 3, "col": "end" },
+        { "op": "backspace", "count": 14 },
+        { "op": "type", "text": "vehicle.insert(-2, 'bike')\nprint(vehicle)" }
+      ]
+    },
+    {
+      "source": "src/stage4.py",
+      "audio": "audio/stage4.wav",
+      "narration": "如果执行 vehicle.insert(len(vehicle), 88)，插入位置等于当前列表长度，88 就被添加到末尾。insert 会在指定位置插入一个元素，该位置及后面的元素依次后移。",
+      "edits": [
+        { "op": "move", "row": 4, "col": "end" },
+        { "op": "backspace", "count": 14 },
+        { "op": "type", "text": "vehicle.insert(len(vehicle), 88)\nprint(vehicle)" }
+      ],
+      "annotations": [
+        { "text": "位置的序号为列表长度时，表示在末尾插入", "row": 4 }
+      ]
+    }
+  ]
+}

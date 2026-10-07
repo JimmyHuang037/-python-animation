@@ -34,7 +34,8 @@ description: 制作或修改 IDE 风格的 Python 分步教学视频：中文旁
 2. 创建新课时，读 [配置说明](references/IDE-lesson-format.md)，复制 `assets/list-demo/` 后换源码、讲解文字、WAV 和注释。
 3. 在目标环境设置 `IDE_VIDEO_CODE_FONT` 与 `IDE_VIDEO_UI_FONT`，再运行 `scripts/render_lesson.py`。
 4. 运行 `scripts/verify_lesson.py --manifest <生成的 manifest 路径>`，检查实际成片、音频和截图拼图；最终 MP4 音轨必须与经响度处理的混音一致，不能仅凭中间 WAV 判定声音通过。
-5. 把成品放到 `<输出目录>`；技能目录只保留源文件和小型示例资产。
+5. 需要把多课连成一个视频时，运行 `scripts/glitch_concat.py --inputs <a.mp4> <b.mp4> ... --output <合集.mp4>`；相邻两课之间插入 1.5 秒三段故障转场（RGB 错位、电蓝扫光、亮度绽放），转场期间音轨静音。
+6. 把成品放到 `<输出目录>`；技能目录只保留源文件和小型示例资产。
 
 ## 环境与真实性
 

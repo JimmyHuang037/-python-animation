@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "display_file": "vehicle.py",
+  "lesson_label": "列表操作 4：extend",
+  "voice_label": "豆包 Tina2.0",
+  "timing": {
+    "character_seconds": 0.1,
+    "after_typing": 3.8,
+    "result_hold": 6
+  },
+  "typing_sound": {
+    "enabled": true,
+    "volume": 0.5,
+    "source": "../../../../skills/ide-lesson-video/assets/list-demo/keyboard-continuous.wav",
+    "source_start_seconds": 0
+  },
+  "execution": {
+    "mode": "local",
+    "timeout_seconds": 15
+  },
+  "stages": [
+    {
+      "source": "src/stage1.py",
+      "audio": "audio/stage1.wav",
+      "narration": "extend 方法也会直接修改原列表，但它会取出传入对象中的元素，依次追加到末尾。执行 vehicle.extend(['plane'])，会追加 plane。"
+    },
+    {
+      "source": "src/stage2.py",
+      "audio": "audio/stage2.wav",
+      "narration": "执行 vehicle.extend([8])，会追加整数 8。",
+      "edits": [
+        {
+          "op": "move",
+          "row": 2,
+          "col": "end"
+        },
+        {
+          "op": "backspace",
+          "count": 14
+        },
+        {
+          "op": "type",
+          "text": "vehicle.extend([8])\nprint(vehicle)"
+        }
+      ]
+    },
+    {
+      "source": "src/stage3.py",
+      "audio": "audio/stage3.wav",
+      "narration": "执行 vehicle.extend([8, 9])，则会依次追加 8 和 9 两个元素，不会形成嵌套列表。",
+      "edits": [
+        {
+          "op": "move",
+          "row": 3,
+          "col": "end"
+        },
+        {
+          "op": "backspace",
+          "count": 14
+        },
+        {
+          "op": "type",
+          "text": "vehicle.extend([8, 9])\nprint(vehicle)"
+        }
+      ]
+    },
+    {
+      "source": "src/stage4.py",
+      "audio": "audio/stage4.wav",
+      "narration": "extend 接收一个可迭代对象。整数 10 不能被逐个取出元素，所以 vehicle.extend(10) 会报错；传入两个参数 vehicle.extend(10, 11) 也会报错。",
+      "edits": [
+        {
+          "op": "move",
+          "row": 4,
+          "col": "end"
+        },
+        {
+          "op": "backspace",
+          "count": 83
+        },
+        {
+          "op": "type",
+          "text": "try:\n    vehicle.extend(10)\nexcept TypeError as e:\n    print('TypeError:', e)"
+        }
+      ]
+    },
+    {
+      "source": "src/stage5.py",
+      "audio": "audio/stage5.wav",
+      "narration": "再看字符串的例子：对列表 [1, 2] 执行 extend('ab')，字符串被逐个取出字符，结果是 [1, 2, 'a', 'b']。记住：append 追加一个整体，extend 逐个追加其中的元素。",
+      "edits": [
+        {
+          "op": "move",
+          "row": 4,
+          "col": "end"
+        },
+        {
+          "op": "backspace",
+          "count": 119
+        },
+        {
+          "op": "type",
+          "text": "x = [1, 2]\nx.extend('ab')\nprint(x)"
+        }
+      ]
+    }
+  ]
+}

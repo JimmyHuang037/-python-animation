@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "display_file": "vehicle.py",
+  "lesson_label": "列表操作 1：列表相加",
+  "voice_label": "豆包 Tina2.0",
+  "timing": {
+    "character_seconds": 0.1,
+    "after_typing": 3.8,
+    "result_hold": 6
+  },
+  "typing_sound": {
+    "enabled": true,
+    "volume": 0.5,
+    "source": "../../../../skills/ide-lesson-video/assets/list-demo/keyboard-continuous.wav",
+    "source_start_seconds": 0
+  },
+  "execution": {
+    "mode": "local",
+    "timeout_seconds": 15
+  },
+  "stages": [
+    {
+      "source": "src/stage1.py",
+      "audio": "audio/stage1.wav",
+      "narration": "首先来看列表相加。列表 vehicle1 中有 train、bus、car 和 ship 四个元素，列表 vehicle2 中有 subway 和 bicycle 两个元素。",
+      "annotations": [
+        {
+          "text": "vehicle1 和 vehicle2 都没有改变",
+          "row": 3
+        }
+      ]
+    },
+    {
+      "source": "src/stage2.py",
+      "audio": "audio/stage2.wav",
+      "narration": "执行 vehicle1 加 vehicle2，会把两个列表按顺序拼接成一个新列表，先放 vehicle1 的元素，再放 vehicle2 的元素。加号表示拼接，两个原列表都不改变。",
+      "edits": [
+        { "op": "move", "row": 4, "col": "end" },
+        { "op": "backspace", "count": 58 },
+        { "op": "type", "text": "vehicle = vehicle1 + vehicle2\nprint(vehicle)" }
+      ],
+      "annotations": [
+        {
+          "text": "生成新列表赋值给变量 vehicle",
+          "row": 2
+        }
+      ]
+    },
+    {
+      "source": "src/stage3.py",
+      "audio": "audio/stage3.wav",
+      "narration": "把结果赋值给变量 vehicle，再执行 vehicle 加等于 ['bike']，就在末尾追加 bike。这种加等于的写法会直接修改原列表。",
+      "edits": [
+        { "op": "move", "row": 3, "col": "end" },
+        { "op": "backspace", "count": 14 },
+        { "op": "type", "text": "vehicle += ['bike']\nprint(vehicle)" }
+      ],
+      "annotations": [
+        {
+          "text": "复合赋值语句",
+          "row": 3
+        }
+      ]
+    }
+  ]
+}
