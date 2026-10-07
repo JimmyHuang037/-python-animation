@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "display_file": "vehicle.py",
+  "lesson_label": "列表操作 3：append",
+  "voice_label": "豆包 Tina2.0",
+  "timing": {
+    "character_seconds": 0.1,
+    "after_typing": 3.8,
+    "result_hold": 6
+  },
+  "typing_sound": {
+    "enabled": true,
+    "volume": 0.5,
+    "source": "../../../../skills/ide-lesson-video/assets/list-demo/keyboard-continuous.wav",
+    "source_start_seconds": 0
+  },
+  "execution": {
+    "mode": "local",
+    "timeout_seconds": 15
+  },
+  "stages": [
+    {
+      "source": "src/stage1.py",
+      "audio": "audio/stage1.wav",
+      "narration": "append 方法用于在列表末尾追加一个元素，并直接修改原列表。执行 vehicle.append('plane')，字符串 plane 就被添加到末尾。",
+      "annotations": [
+        { "text": "追加一个元素 'plane'", "row": 1 }
+      ]
+    },
+    {
+      "source": "src/stage2.py",
+      "audio": "audio/stage2.wav",
+      "narration": "接着执行 vehicle.append(8)，又在末尾添加整数 8。这说明列表中可以存放不同类型的元素。",
+      "edits": [
+        { "op": "move", "row": 2, "col": "end" },
+        { "op": "backspace", "count": 14 },
+        { "op": "type", "text": "vehicle.append(8)\nprint(vehicle)" }
+      ],
+      "annotations": [
+        { "text": "追加一个元素 8", "row": 2 }
+      ]
+    },
+    {
+      "source": "src/stage3.py",
+      "audio": "audio/stage3.wav",
+      "narration": "如果执行 vehicle.append([8, 9])，整个列表作为一个元素加入，形成嵌套列表，里面的 8 和 9 不会被拆开。",
+      "edits": [
+        { "op": "move", "row": 3, "col": "end" },
+        { "op": "backspace", "count": 14 },
+        { "op": "type", "text": "vehicle.append([8, 9])\nprint(vehicle)" }
+      ],
+      "annotations": [
+        { "text": "追加一个元素 [8, 9]", "row": 3 }
+      ]
+    },
+    {
+      "source": "src/stage4.py",
+      "audio": "audio/stage4.wav",
+      "narration": "注意，append 每次只接收一个参数，所以 vehicle.append(10, 11) 会报错。append 是把传入的对象作为一个整体，追加到列表末尾。",
+      "edits": [
+        { "op": "move", "row": 4, "col": "end" },
+        { "op": "backspace", "count": 79 },
+        { "op": "type", "text": "try:\n    vehicle.append(10, 11)\nexcept TypeError as e:\n    print('TypeError:', e)" }
+      ],
+      "annotations": [
+        { "text": "追加 2 个元素 10 和 11 出错", "row": 2 }
+      ]
+    }
+  ]
+}

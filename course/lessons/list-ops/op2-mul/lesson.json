@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "display_file": "vehicle.py",
+  "lesson_label": "列表操作 2：列表的乘法",
+  "voice_label": "豆包 Tina2.0",
+  "timing": {
+    "character_seconds": 0.1,
+    "after_typing": 3.8,
+    "result_hold": 8
+  },
+  "typing_sound": {
+    "enabled": true,
+    "volume": 0.5,
+    "source": "../../../../skills/ide-lesson-video/assets/list-demo/keyboard-continuous.wav",
+    "source_start_seconds": 0
+  },
+  "execution": {
+    "mode": "local",
+    "timeout_seconds": 15
+  },
+  "stages": [
+    {
+      "source": "src/stage1.py",
+      "audio": "audio/stage1.wav",
+      "narration": "接下来看列表的乘法。创建列表 vehicle1，里面有 train 和 bus 两个元素。"
+    },
+    {
+      "source": "src/stage2.py",
+      "audio": "audio/stage2.wav",
+      "narration": "执行 vehicle1 乘 2，表示把整个列表的元素顺序重复两次，结果是 train、bus、train、bus。"
+    },
+    {
+      "source": "src/stage3.py",
+      "audio": "audio/stage3.wav",
+      "narration": "它不会把每个元素单独重复两次，也不做数值运算。列表乘以几就重复几次，生成新列表，原来的 vehicle1 不改变。"
+    }
+  ]
+}
